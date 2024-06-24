@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FileCache {
+final class FileCache {
     private(set) var todos: [TodoItem] = []
     
     func createTodo(_ todo: TodoItem?) {
