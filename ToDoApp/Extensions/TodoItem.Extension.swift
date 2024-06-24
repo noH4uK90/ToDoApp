@@ -7,12 +7,14 @@
 
 import Foundation
 
+// MARK: Json parsing
 extension TodoItem {
     var json: Any {
         var todo: [String: Any] = [
-            "id": id,
+            "id": id.isEmpty ? UUID().uuidString : id,
             "text": text,
-            "isCompleted": isCompleted
+            "isCompleted": isCompleted,
+            "createdDate": createdDate
         ]
         if importance != Importance.usual {
             todo["importance"] = importance.rawValue
@@ -20,6 +22,10 @@ extension TodoItem {
         
         if let expires = expires {
             todo["expires"] = expires.ISO8601Format()
+        }
+        
+        if let changedDate = changedDate {
+            todo["changedDate"] = changedDate.ISO8601Format()
         }
         
         return todo
@@ -33,6 +39,8 @@ extension TodoItem {
         guard let id = dictionary["id"] as? String,
               let text = dictionary["text"] as? String,
               let isCompleted = dictionary["isCompleted"] as? Bool,
+              let createdDateString = dictionary["createdDate"] as? String,
+              let createdDate = ISO8601DateFormatter().date(from: createdDateString),
               !text.isEmpty else {
             return nil
         }
@@ -45,51 +53,101 @@ extension TodoItem {
             expires = ISO8601DateFormatter().date(from: expiresString)
         }
         
-        return TodoItem(id: id, text: text, importance: importance, expires: expires, isCompleted: isCompleted)
-    }
-    
-    static func parseCSV(from csv: String, separator: Character = ";") -> [TodoItem] {
-        var result: [TodoItem] = []
-        let csvStrings = csv.split(separator: "\n").map({ String($0) })
-        
-        for csvString in csvStrings {
-            var todo: [String] = []
-            var currentField = ""
-            var quote = false
-            
-            for char in csvString {
-                if char == "\"" {
-                    quote.toggle()
-                } else if char == separator && !quote {
-                    todo.append(currentField)
-                    currentField = ""
-                } else {
-                    currentField.append(char)
-                }
-            }
-            
-            todo.append(currentField)
-            
-            let id = todo[0]
-            let text = todo[1]
-            let isCompleted = Bool(todo[2])
-            let importance = Importance(rawValue: todo[3])
-            let expires = ISO8601DateFormatter().date(from: todo[4])
-            
-            if text.isEmpty {
-                continue
-            }
-            
-            let parsedTodo = TodoItem(
-                id: id.isEmpty ? nil : id,
-                text: text,
-                importance: importance,
-                expires: expires,
-                isCompleted: isCompleted
-            )
-            result.append(parsedTodo)
+        var changedDate: Date? = nil
+        if let changedDateString = dictionary["changedDate"] as? String {
+            changedDate = ISO8601DateFormatter().date(from: changedDateString)
         }
         
-        return result
+        return TodoItem(
+            id: id,
+            text: text,
+            importance: importance,
+            expires: expires,
+            isCompleted: isCompleted,
+            createdDate: createdDate,
+            changedDate: changedDate
+        )
+    }
+}
+
+// MARK: CSV parsing
+extension TodoItem {
+    
+    static var fieldNames: [String] {
+        ["id", "text", "importance", "expires", "isCompleted", "createdDate", "changedDate"]
+    }
+    
+    static func csvHeader(separator: Character = ";") -> String {
+        fieldNames.joined(separator: String(separator))
+    }
+    
+    var csv: (Character) -> String {
+        { separator in
+            var todo = [String](repeating: "", count: 7)
+            
+            todo[0] = id.isEmpty ? UUID().uuidString : id
+            todo[1] = text.contains(separator) ? "\"\(text)\"" : text
+            todo[2] = importance.rawValue
+            todo[4] = String(isCompleted)
+            todo[5] = createdDate.ISO8601Format()
+            
+            if let expires = expires {
+                todo[3] = expires.ISO8601Format()
+            }
+            
+            if let changedDate = changedDate {
+                todo[6] = changedDate.ISO8601Format()
+            }
+            
+            return todo.joined(separator: String(separator))
+        }
+    }
+    
+    static func parseCSV(from csv: String, separator: Character = ";") -> TodoItem? {
+        if csv == csvHeader(separator: separator) {
+            return nil
+        }
+        
+        var todo: [String] = []
+        var currentField = ""
+        var quote = false
+        
+        for char in csv {
+            if char == "\"" {
+                quote.toggle()
+            } else if char == separator && !quote {
+                todo.append(currentField)
+                currentField = ""
+            } else {
+                currentField.append(char)
+            }
+        }
+        
+        todo.append(currentField)
+        
+        let id = todo[0]
+        let text = todo[1]
+        let expires = ISO8601DateFormatter().date(from: todo[3])
+        
+        guard
+            let importance = Importance(rawValue: todo[2]),
+            let isCompleted = Bool(todo[4]),
+            let createdDate = ISO8601DateFormatter().date(from: todo[5]),
+            !text.isEmpty
+        else {
+            return nil
+        }
+        
+        let changedDate = ISO8601DateFormatter().date(from: todo[6])
+        
+        return TodoItem(
+            id: id,
+            text: text,
+            importance: importance,
+            expires: expires,
+            isCompleted: isCompleted,
+            createdDate: createdDate,
+            changedDate: changedDate
+        )
     }
 }

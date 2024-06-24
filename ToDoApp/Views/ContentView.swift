@@ -13,6 +13,7 @@ struct ContentView: View {
             ToDoListView()
                 .navigationTitle("Мои дела")
         }
+        .padding()
         .onAppear {
             let todo = TodoItem(text: "")
         }
