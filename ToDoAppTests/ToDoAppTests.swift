@@ -29,7 +29,7 @@ class TodoItemTests: XCTestCase {
     func testTodoItemInitializationWithDefaults() {
         let text = "Сделать что-то"
 
-        let todoItem = TodoItem(id: nil, text: text, importance: nil, expires: nil, isCompleted: nil)
+        let todoItem = TodoItem(text: text)
 
         XCTAssertEqual(todoItem.text, text)
         XCTAssertEqual(todoItem.importance, .usual)
@@ -61,6 +61,7 @@ class TodoItemTests: XCTestCase {
             "id": "DB5FEF23-DF9E-4286-BB16-DBC94A869FBA",
             "text": "Сделать что-то",
             "isCompleted": false,
+            "createdDate": "2024-06-15T16:43:44Z",
             "importance": "Важная",
             "expires": "2024-06-15T16:43:44Z"
         ]
@@ -80,6 +81,7 @@ class TodoItemTests: XCTestCase {
             "id": "DB5FEF23-DF9E-4286-BB16-DBC94A869FBA",
             "text": "Сделать что-то",
             "isCompleted": false,
+            "createdDate": "2024-06-15T16:43:44Z"
         ]
         
         let todoItem = TodoItem.parse(json: json)
@@ -93,9 +95,8 @@ class TodoItemTests: XCTestCase {
     }
 
     func testTodoItemFromCSV() {
-        let csvString = "DB5FEF23-DF9E-4286-BB16-DBC94A869FBA;Сделать что-то;false;Важная;2024-06-15T16:43:44Z"
-        let todoItems = TodoItem.parseCSV(from: csvString, separator: ";")
-        let todoItem = todoItems.first
+        let csvString = "DB5FEF23-DF9E-4286-BB16-DBC94A869FBA;Сделать что-то;Важная;2024-06-15T16:43:44Z;false;2024-06-15T16:43:44Z;"
+        let todoItem = TodoItem.parseCSV(from: csvString, separator: ";")
 
         XCTAssertNotNil(todoItem)
         XCTAssertEqual(todoItem?.id, "DB5FEF23-DF9E-4286-BB16-DBC94A869FBA")
@@ -106,9 +107,8 @@ class TodoItemTests: XCTestCase {
     }
     
     func testTodoItemFromCSVWithSameSeparatorInText() {
-        let csvString = "DB5FEF23-DF9E-4286-BB16-DBC94A869FBA;\"Сделать; что-то\";false;Важная;2024-06-15T16:43:44Z"
-        let todoItems = TodoItem.parseCSV(from: csvString, separator: ";")
-        let todoItem = todoItems.first
+        let csvString = "DB5FEF23-DF9E-4286-BB16-DBC94A869FBA;\"Сделать; что-то\";Важная;2024-06-15T16:43:44Z;false;2024-06-15T16:43:44Z;"
+        let todoItem = TodoItem.parseCSV(from: csvString, separator: ";")
         
         XCTAssertNotNil(todoItem)
         XCTAssertEqual(todoItem?.id, "DB5FEF23-DF9E-4286-BB16-DBC94A869FBA")
@@ -118,22 +118,10 @@ class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem?.isCompleted, false)
     }
     
-    func testTodoItemFromCSVWithOnlyText() {
-        let csvString = ";\"Сделать; что-то\";;;"
-        let todoItems = TodoItem.parseCSV(from: csvString, separator: ";")
-        let todoItem = todoItems.first
-        
-        XCTAssertNotNil(todoItem)
-        XCTAssertEqual(todoItem?.text, "Сделать; что-то")
-        XCTAssertEqual(todoItem?.importance, .usual)
-        XCTAssertNil(todoItem?.expires)
-        XCTAssertEqual(todoItem?.isCompleted, false)
-    }
-    
     func testTodoItemFromCSVWithoutFields() {
         let csvString = ";;;;"
-        let todoItems = TodoItem.parseCSV(from: csvString, separator: ";")
+        let todoItem = TodoItem.parseCSV(from: csvString, separator: ";")
         
-        XCTAssertTrue(todoItems.isEmpty)
+        XCTAssertNil(todoItem)
     }
 }

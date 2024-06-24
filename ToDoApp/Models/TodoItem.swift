@@ -13,20 +13,24 @@ struct TodoItem: Identifiable {
     let importance: Importance
     let expires: Date?
     let isCompleted: Bool
-    let createdDate: Date = Date()
-    let changedDate: Date? = nil
+    let createdDate: Date
+    let changedDate: Date?
     
     init(
-        id: String? = nil,
+        id: String = UUID().uuidString,
         text: String,
-        importance: Importance? = .usual,
+        importance: Importance = .usual,
         expires: Date? = nil,
-        isCompleted: Bool? = false
+        isCompleted: Bool = false,
+        createdDate: Date = Date(),
+        changedDate: Date? = nil
     ) {
-        self.id = id ?? UUID().uuidString
+        self.id = id.isEmpty ? UUID().uuidString : id
         self.text = text
-        self.importance = importance ?? .usual
+        self.importance = importance
         self.expires = expires
-        self.isCompleted = isCompleted ?? false
+        self.isCompleted = isCompleted
+        self.createdDate = createdDate
+        self.changedDate = changedDate
     }
 }

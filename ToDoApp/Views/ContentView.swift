@@ -16,6 +16,16 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear {
+            let todo = TodoItem(text: "Что; надо сделать")
+            let fileCache = FileCache()
+            print(Bool("false"))
+            fileCache.createTodo(todo)
+            fileCache.saveToFile(to: "todos", extension: .csv)
+            fileCache.removeAll()
+            fileCache.exportFromFile(from: "todos", extension: .csv)
+            print(fileCache.todos)
+        }
     }
 }
 
