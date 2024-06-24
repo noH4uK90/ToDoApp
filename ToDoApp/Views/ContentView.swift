@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct ContentView: View {
     var body: some View {
         NavigationStack {
             ToDoListView()
@@ -20,5 +20,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    ContentView()
 }
