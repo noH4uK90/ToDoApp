@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ToDoListView: View {
-    @State var isShowSheet: Bool = true
+    @State var isShowSheet: Bool = false
     @State var selectedItem = 1
     var body: some View {
         List {

@@ -7,19 +7,15 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     var body: some View {
         NavigationStack {
             ToDoListView()
                 .navigationTitle("Мои дела")
         }
-        .padding()
-        .onAppear {
-            let todo = TodoItem(text: "")
-        }
     }
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }

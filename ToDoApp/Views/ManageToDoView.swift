@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ManageToDoView: View {
+    @Environment(\.dismiss) var dismiss
     @State var importance: Importance = .usual
     @State var isExpires: Bool = false
-    @State var selectedDate: Date = Date()
+    @State var selectedDate: Date = Date().addingTimeInterval(24*3600)
     @State var isShowDatePicker: Bool = false
     @State var text: String = ""
     var body: some View {
@@ -51,7 +52,7 @@ struct ManageToDoView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Отменить") {
-                        
+                        dismiss()
                     }
                 }
                 
@@ -61,9 +62,9 @@ struct ManageToDoView: View {
                     }
                 }
             }
-            .onChange(of: isExpires) { _, newValue in
+            .onChange(of: isExpires) { value in
                 withAnimation(.easeInOut(duration: 1)) {
-                    isShowDatePicker = newValue
+                    isShowDatePicker = value
                 }
             }
         }
@@ -99,8 +100,10 @@ struct ManageToDoView: View {
                     .datePickerStyle(.graphical)
                     .environment(\.locale, Locale.init(identifier: Locale.preferredLanguages.first ?? "en-US"))
                     .transition(
-                        .opacity.combined(with: .move(edge: .top))
+                        .slide
+//                        .opacity.combined(with: .move(edge: .top))
                     )
+                    .animation(.easeInOut)
             }
         }
     }
