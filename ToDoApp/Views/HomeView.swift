@@ -9,9 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        NavigationStack {
-            ToDoListView()
-                .navigationTitle("Мои дела")
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            TodoListView_iOS()
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
+            TodoListView_iPadOS()
         }
     }
 }
