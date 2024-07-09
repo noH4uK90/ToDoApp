@@ -55,10 +55,6 @@ final class FileCache {
         }
     }
     
-    func removeAll() {
-        todos = []
-    }
-    
     private func getFileURL(fileName: String, fileExtension: FileExtension) -> URL {
         fileManager
             .urls(for: .documentDirectory, in: .userDomainMask)[0]
