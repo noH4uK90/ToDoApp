@@ -16,7 +16,7 @@ struct TodoItemView: View {
     
     var body: some View {
         HStack {
-            IsCompletedButton(isCompleted: $todo.isCompleted, importance: $todo.importance)
+            IsCompletedButton(isCompleted: todo.isCompleted, importance: todo.importance)
             VStack(alignment: .leading) {
                 HStack {
                     Image(systemName: "exclamationmark.2")
@@ -56,9 +56,6 @@ struct TodoItemView: View {
             }
         }
         .padding(.vertical, 7)
-        .onAppear {
-            print("Todo \(todo)")
-        }
     }
 }
 

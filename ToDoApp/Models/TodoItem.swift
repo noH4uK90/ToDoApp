@@ -9,13 +9,13 @@ import Foundation
 
 struct TodoItem: Identifiable, Hashable {
     let id: String
-    var text: String
-    var importance: Importance
-    var expires: Date?
-    var isCompleted: Bool
+    let text: String
+    let importance: Importance
+    let expires: Date?
+    let isCompleted: Bool
     let createdDate: Date
     let changedDate: Date?
-    var color: String?
+    let color: String?
     
     init(
         id: String = UUID().uuidString,
@@ -34,17 +34,6 @@ struct TodoItem: Identifiable, Hashable {
         self.isCompleted = isCompleted
         self.createdDate = createdDate
         self.changedDate = changedDate
-        self.color = color
-    }
-    
-    mutating func complete() {
-        self.isCompleted.toggle()
-    }
-    
-    mutating func modify(text: String, importance: Importance, expires: Date? = nil, color: String? = nil) {
-        self.text = text
-        self.importance = importance
-        self.expires = expires
         self.color = color
     }
 }

@@ -11,6 +11,11 @@ struct IsCompletedButton: View {
     @Binding var isCompleted: Bool
     @Binding var importance: Importance
     
+    init(isCompleted: Bool, importance: Importance) {
+        _isCompleted = Binding<Bool>.constant(isCompleted)
+        _importance = Binding<Importance>.constant(importance)
+    }
+    
     var body: some View {
         Circle()
             .fill(backgroundColor)
@@ -47,9 +52,9 @@ struct IsCompletedButton: View {
 
 #Preview {
     IsCompletedButton(
-        isCompleted: Binding<Bool>.constant(false),
-        importance: Binding<Importance>.constant(
-            .important
-        )
+//        isCompleted: Binding<Bool>.constant(false),
+//        importance: Binding<Importance>.constant(.important)
+        isCompleted: true,
+        importance: .important
     )
 }

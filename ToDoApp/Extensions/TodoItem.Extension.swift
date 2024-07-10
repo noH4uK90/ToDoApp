@@ -7,6 +7,33 @@
 
 import Foundation
 
+extension TodoItem {
+    func modify(
+        text: String? = nil,
+        importance: Importance? = nil,
+        expires: Date? = nil,
+        isCompleted: Bool? = nil,
+        createdDate: Date? = nil,
+        changedDate: Date? = nil,
+        color: String? = nil
+    ) -> TodoItem {
+        TodoItem(
+            id: self.id,
+            text: text ?? self.text,
+            importance: importance ?? self.importance,
+            expires: expires ?? self.expires,
+            isCompleted: isCompleted ?? self.isCompleted,
+            createdDate: createdDate ?? self.createdDate,
+            changedDate: changedDate ?? changedDate,
+            color: color ?? self.color
+        )
+    }
+    
+    func changeComplete() -> TodoItem {
+        modify(isCompleted: !self.isCompleted)
+    }
+}
+
 // MARK: Json parsing
 extension TodoItem {
     var json: Any {

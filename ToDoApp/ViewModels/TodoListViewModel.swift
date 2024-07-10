@@ -32,7 +32,7 @@ class TodoListViewModel: ObservableObject {
     
     func complete(id: String) {
         if let index = todos.firstIndex(where: { $0.id == id }) {
-            todos[index].complete()
+            todos[index] = todos[index].changeComplete()
             getCompletedCount()
         }
     }
