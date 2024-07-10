@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import CocoaLumberjack
 
 @main
 struct ToDoAppApp: App {
+    
+    init() {
+        DDLog.add(DDOSLogger.sharedInstance)
+    }
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
