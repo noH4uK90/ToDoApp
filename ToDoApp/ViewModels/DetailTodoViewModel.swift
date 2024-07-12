@@ -43,7 +43,7 @@ extension DetailTodoView {
         
         func save() {
             if todo != nil {
-                todo?.modify(text: text, importance: importance, expires: isExpires ? expiresDate : nil, color: isShowColorPicker ? selectionColor.toHex() : nil)
+                self.todo = todo?.modify(text: text, importance: importance, expires: isExpires ? expiresDate : nil, color: isShowColorPicker ? selectionColor.toHex() : nil)
             } else {
                 self.todo = TodoItem(text: text, importance: importance, expires: isExpires ? expiresDate : nil, color: isShowColorPicker ? selectionColor.toHex() : nil)
             }
