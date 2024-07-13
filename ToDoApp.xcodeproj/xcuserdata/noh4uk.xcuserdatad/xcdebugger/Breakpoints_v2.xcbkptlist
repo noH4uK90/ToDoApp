@@ -14,9 +14,9 @@
             filePath = "ToDoApp/Extensions/TodoItem.Extension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "parseCSV(from:separator:)"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "parse(csv:separator:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -66,32 +66,32 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "3B81CC02-B5B9-48EE-90B9-AAE6AE2FC9FC - 6fb0707b98b8c927"
+                  uuid = "3B81CC02-B5B9-48EE-90B9-AAE6AE2FC9FC - 9a2925a64fd653ff"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ToDoApp.TodoListView_iPadOS.body.getter : some"
+                  symbolName = "closure #2 () -&gt; SwiftUI._ConditionalContent&lt;ToDoApp.DetailTodoView, ToDoApp.DetailTodoView&gt; in ToDoApp.TodoListView_iPadOS.body.getter : some"
                   moduleName = "ToDoApp.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/noh4uk/Documents/projects/Yandex/Mobile%20School/ToDoApp/ToDoApp/Views/iPadOS/TodoListView.iPadOS.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40">
+                  startingLineNumber = "52"
+                  endingLineNumber = "52">
                </Location>
                <Location
-                  uuid = "3B81CC02-B5B9-48EE-90B9-AAE6AE2FC9FC - bf708f3ae57bdbea"
+                  uuid = "3B81CC02-B5B9-48EE-90B9-AAE6AE2FC9FC - ce0074cdfd80104c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; SwiftUI._ConditionalContent&lt;ToDoApp.ManageToDoView, SwiftUI.Text&gt; in ToDoApp.TodoListView_iPadOS.body.getter : some"
+                  symbolName = "closure #1 (ToDoApp.TodoItem) -&gt; () in closure #2 () -&gt; SwiftUI._ConditionalContent&lt;ToDoApp.DetailTodoView, ToDoApp.DetailTodoView&gt; in ToDoApp.TodoListView_iPadOS.body.getter : some"
                   moduleName = "ToDoApp.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/noh4uk/Documents/projects/Yandex/Mobile%20School/ToDoApp/ToDoApp/Views/iPadOS/TodoListView.iPadOS.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40">
+                  startingLineNumber = "52"
+                  endingLineNumber = "52">
                </Location>
             </Locations>
          </BreakpointContent>

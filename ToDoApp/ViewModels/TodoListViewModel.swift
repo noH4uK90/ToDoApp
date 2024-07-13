@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FileCacheLibrary
 
 @MainActor
 class TodoListViewModel: ObservableObject {
@@ -14,12 +15,13 @@ class TodoListViewModel: ObservableObject {
     @Published var selectedTodo: TodoItem? = nil
     
     init() {
-        self.todos = [
-            TodoItem(text: "Сделать что-то"),
-            TodoItem(text: "Сделать что-то важное", importance: .important),
-            TodoItem(text: "Сделать что-то неважное", importance: .unimportant, color: "705335")
-        ]
-        getCompletedCount()
+        do {
+            let fileCache = FileCacheLibrary<TodoItem>()
+            self.todos = try fileCache.exportFromFile()
+            self.getCompletedCount()
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
     }
     
     func saveTodo(todo: TodoItem) {

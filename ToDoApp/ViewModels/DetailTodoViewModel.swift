@@ -5,6 +5,7 @@
 //  Created by Иван Спирин on 7/4/24.
 //
 
+import CocoaLumberjackSwift
 import Foundation
 import SwiftUI
 
@@ -42,9 +43,16 @@ extension DetailTodoView {
         }
         
         func save() {
-            if todo != nil {
-                self.todo = todo?.modify(text: text, importance: importance, expires: isExpires ? expiresDate : nil, color: isShowColorPicker ? selectionColor.toHex() : nil)
+            if let todo = todo {
+                DDLogInfo("Modify todo")
+                self.todo = todo.modify(
+                    text: text,
+                    importance: importance,
+                    expires: isExpires ? expiresDate : nil,
+                    color: isShowColorPicker ? selectionColor.toHex() : nil
+                )
             } else {
+                DDLogInfo("Create new todo")
                 self.todo = TodoItem(text: text, importance: importance, expires: isExpires ? expiresDate : nil, color: isShowColorPicker ? selectionColor.toHex() : nil)
             }
             

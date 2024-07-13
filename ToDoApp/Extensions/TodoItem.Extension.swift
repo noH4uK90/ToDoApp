@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FileCacheLibrary
 
 extension TodoItem {
     func modify(
@@ -35,13 +36,13 @@ extension TodoItem {
 }
 
 // MARK: Json parsing
-extension TodoItem {
+extension TodoItem: JSONable {
     var json: Any {
         var todo: [String: Any] = [
             "id": id.isEmpty ? UUID().uuidString : id,
             "text": text,
             "isCompleted": isCompleted,
-            "createdDate": createdDate
+            "createdDate": createdDate.ISO8601Format()
         ]
         if importance != Importance.usual {
             todo["importance"] = importance.rawValue
@@ -53,6 +54,10 @@ extension TodoItem {
         
         if let changedDate = changedDate {
             todo["changedDate"] = changedDate.ISO8601Format()
+        }
+        
+        if let color = color {
+            todo["color"] = color
         }
         
         return todo
@@ -85,6 +90,8 @@ extension TodoItem {
             changedDate = ISO8601DateFormatter().date(from: changedDateString)
         }
         
+        let color = dictionary["color"] as? String
+        
         return TodoItem(
             id: id,
             text: text,
@@ -92,16 +99,17 @@ extension TodoItem {
             expires: expires,
             isCompleted: isCompleted,
             createdDate: createdDate,
-            changedDate: changedDate
+            changedDate: changedDate,
+            color: color
         )
     }
 }
 
 // MARK: CSV parsing
-extension TodoItem {
+extension TodoItem: CSVable {
     
     static var fieldNames: [String] {
-        ["id", "text", "importance", "expires", "isCompleted", "createdDate", "changedDate"]
+        ["id", "text", "importance", "expires", "isCompleted", "createdDate", "changedDate", "color"]
     }
     
     static func csvHeader(separator: Character = ";") -> String {
@@ -110,7 +118,7 @@ extension TodoItem {
     
     var csv: (Character) -> String {
         { separator in
-            var todo = [String](repeating: "", count: 7)
+            var todo = [String](repeating: "", count: 8)
             
             todo[0] = id.isEmpty ? UUID().uuidString : id
             todo[1] = text.contains(separator) ? "\"\(text)\"" : text
@@ -126,11 +134,15 @@ extension TodoItem {
                 todo[6] = changedDate.ISO8601Format()
             }
             
+            if let color = color {
+                todo[7] = color
+            }
+            
             return todo.joined(separator: String(separator))
         }
     }
     
-    static func parseCSV(from csv: String, separator: Character = ";") -> TodoItem? {
+    static func parse(csv: String, separator: Character = ";") -> TodoItem? {
         if csv == csvHeader(separator: separator) {
             return nil
         }
@@ -166,6 +178,7 @@ extension TodoItem {
         }
         
         let changedDate = ISO8601DateFormatter().date(from: todo[6])
+        let color = todo[7].isEmpty ? nil : todo[7]
         
         return TodoItem(
             id: id,
@@ -174,7 +187,8 @@ extension TodoItem {
             expires: expires,
             isCompleted: isCompleted,
             createdDate: createdDate,
-            changedDate: changedDate
+            changedDate: changedDate,
+            color: color
         )
     }
 }
