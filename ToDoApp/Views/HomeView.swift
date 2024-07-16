@@ -11,6 +11,9 @@ struct HomeView: View {
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             TodoListView_iOS()
+                .onAppear {
+                    print("Base URL: \(Config.baseURL)")
+                }
         } else if UIDevice.current.userInterfaceIdiom == .pad {
             TodoListView_iPadOS()
         }

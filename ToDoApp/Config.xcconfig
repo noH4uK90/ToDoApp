@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  ToDoApp
+//
+//  Created by Иван Спирин on 7/16/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL = beta.mrdekk.ru/todo
