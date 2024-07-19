@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ElementResponse<TItem: Codable>: Codable {
+struct ElementResponse<TItem: Sendable & Codable>: Sendable, Codable {
     let status: String
     let element: TItem
     let revision: Int32

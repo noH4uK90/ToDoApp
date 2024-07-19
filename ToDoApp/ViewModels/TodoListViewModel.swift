@@ -7,21 +7,36 @@
 
 import Foundation
 import FileCacheLibrary
+import Combine
 
 @MainActor
 class TodoListViewModel: ObservableObject {
     @Published var todos: [TodoItem] = []
     @Published var completedCount: Int = 0
     @Published var selectedTodo: TodoItem? = nil
+    @Published var isActive: Bool = false
     
     @Inject private var todoNetworkService: TodoNetworkProtocol
+    private let todoActor = TodoNetworkActor()
+    private var bag = Set<AnyCancellable>()
     
     init() {
         do {
-            let fileCache = FileCacheLibrary<TodoItem>()
-            self.todos = try fileCache.exportFromFile()
-            self.getCompletedCount()
+//            let fileCache = FileCacheLibrary<TodoItem>()
+//            self.todos = try fileCache.exportFromFile()
+            Task {
+                await todoActor.$activeRequests
+                    .receive(on: RunLoop.current)
+                    .sink(
+                        receiveCompletion: { _ in },
+                        receiveValue: { [weak self] value in
+                            self?.isActive = value > 0
+                        }
+                    )
+                    .store(in: &bag)
+            }
             self.getTodosFromNetwork()
+            self.getCompletedCount()
         } catch {
             print("Error: \(error.localizedDescription)")
         }
@@ -29,9 +44,11 @@ class TodoListViewModel: ObservableObject {
     
     func saveTodo(todo: TodoItem) {
         if let index = todos.firstIndex(where: { $0.id == todo.id }) {
-            todos[index] = todo
+//            todos[index] = todo
+            updateTodo(id: todo.id, todo: todo)
         } else {
-            todos.append(todo)
+//            todos.append(todo)
+            createTodo(todo: todo)
         }
     }
     
@@ -54,10 +71,34 @@ class TodoListViewModel: ObservableObject {
     func getTodosFromNetwork() {
         Task {
             do {
-                let response = try await todoNetworkService.getTodos()
-                print(response)
+                try await todoActor.fetchTodos()
+                self.todos = await todoActor.todos
             } catch {
                 print("Network error: \(error)")
+            }
+        }
+    }
+    
+    func createTodo(todo: TodoItem) {
+        Task {
+            do {
+                try await todoActor.addTodo(todo: todo)
+                try await todoActor.fetchTodos()
+                self.todos = await todoActor.todos
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func updateTodo(id: String, todo: TodoItem) {
+        Task {
+            do {
+                try await todoActor.updateTodo(id: id, todo: todo)
+                try await todoActor.fetchTodos()
+                self.todos = await todoActor.todos
+            } catch {
+                print(error)
             }
         }
     }

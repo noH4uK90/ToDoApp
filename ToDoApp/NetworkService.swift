@@ -9,21 +9,32 @@ import Foundation
 
 typealias Headers = [String: String]
 
-protocol NetworkProtocol {
-    func performRequest(_ url: URL, method: HTTPMethods, headers: Headers?, attempts: Int) async throws
-    func performRequest<TResult: Decodable>(_ url: URL, method: HTTPMethods, headers: [String: String]?, attempts: Int) async throws -> TResult
+protocol NetworkProtocol: Sendable {
+    var activeRequests: Int { get }
+    var activeRequestsPublished: Published<Int> { get }
+    var activeRequestsPublisher: Published<Int>.Publisher { get }
     
-    func performRequestWithBody<TData: Encodable>(_ url: URL, _ body: TData, method: HTTPMethods, headers: [String: String]?, attempts: Int) async throws
-    func performRequestWithBody<TData: Encodable, TResult: Decodable>(
-        _ url: URL,
-        _ body: TData,
-        method: HTTPMethods,
-        headers: [String: String]?,
-        attempts: Int
-    ) async throws -> TResult
+    func performRequest<TResult: Sendable & Decodable>(_ url: URL, method: HTTPMethods, headers: Headers?) async throws -> TResult
+    
+    func performRequestWithBody<TData: Sendable & Encodable, TResult: Sendable & Decodable>(_ url: URL, _ body: TData, method: HTTPMethods, headers: Headers?) async throws -> TResult
+    
+    func retry<T: Sendable & Decodable>(maxAttempts: Int, operation: @escaping () async throws -> T, onCancel: @escaping () async throws -> T) async rethrows -> T
 }
 
-final class NetworkService: NSObject, NetworkProtocol {
+extension NetworkProtocol {
+    func performRequest<TResult: Sendable & Decodable>(_ url: URL, method: HTTPMethods, headers: Headers? = nil) async throws -> TResult {
+        try await performRequest(url, method: method, headers: headers)
+    }
+    
+    func performRequestWithBody<TData: Sendable & Encodable, TResult: Sendable & Decodable>(_ url: URL, _ body: TData, method: HTTPMethods, headers: Headers? = nil) async throws -> TResult {
+        try await performRequestWithBody(url, body, method: method, headers: headers)
+    }
+}
+
+final class NetworkService: NSObject, NetworkProtocol, Sendable {
+    @Published var activeRequests: Int = 0
+    var activeRequestsPublished: Published<Int> { _activeRequests }
+    var activeRequestsPublisher: Published<Int>.Publisher { $activeRequests }
     
     private let minDelay: TimeInterval = 2
     private let maxDelay: TimeInterval = 120
@@ -31,73 +42,23 @@ final class NetworkService: NSObject, NetworkProtocol {
     private let jitter: Double = 0.05
     private let maxAttempts: Int = 5
     
-    func performRequest(_ url: URL, method: HTTPMethods, headers: Headers? = nil, attempts: Int = 0) async throws {
+    @discardableResult
+    func performRequest<TResult: Sendable & Decodable>(
+        _ url: URL,
+        method: HTTPMethods,
+        headers: Headers? = nil
+    ) async throws -> TResult {
+        activeRequests += 1
+        defer { activeRequests -= 1 }
+        
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.global(qos: .background).async {
                 Task {
                     do {
                         let request = try self.createRequest(url, method: method, headers: headers)
-                        let (_, response) = try await self.session.data(for: request)
+                        let (data, response) = try await URLSession.shared.data(for: request)
                         
-                        try self.handleResponse(response)
-                        continuation.resume()
-                    } catch {
-                        self.retryRequest(url: url, method: method, headers: headers, attempts: attempts + 1, continuation: continuation)
-                    }
-                }
-            }
-        }
-    }
-    
-    func performRequest<TResult: Decodable>(_ url: URL, method: HTTPMethods, headers: Headers? = nil, attempts: Int = 0) async throws -> TResult {
-        return try await withCheckedThrowingContinuation { continuation in
-            DispatchQueue.global(qos: .background).async {
-                Task {
-                    do {
-                        let request = try self.createRequest(url, method: method, headers: headers)
-                        print(Task.currentPriority)
-                        let (data, response) = try await self.session.data(for: request)
-                        print(Task.currentPriority)
-                        
-                        try self.handleResponse(response)
-                        
-                        let result = try JSONDecoder().decode(TResult.self, from: data)
-                        continuation.resume(returning: result)
-                    } catch {
-                        self.retryRequest(url: url, method: method, headers: headers, attempts: attempts + 1, continuation: continuation)
-                    }
-                }
-            }
-        }
-    }
-    
-    func performRequestWithBody<TData: Encodable>(_ url: URL, _ body: TData, method: HTTPMethods, headers: Headers? = nil, attempts: Int = 0) async throws {
-        return try await withCheckedThrowingContinuation { continuation in
-            DispatchQueue.global(qos: .background).async {
-                Task {
-                    do {
-                        let requestData = try JSONEncoder().encode(body)
-                        let request = try self.createRequest(url, requestData, method: method, headers: headers)
-                        let (_, response) = try await self.session.data(for: request)
-                        
-                        try self.handleResponse(response)
-                        continuation.resume()
-                    } catch {
-                        self.retryRequest(url: url, body: body, method: method, headers: headers, attempts: attempts, continuation: continuation)
-                    }
-                }
-            }
-        }
-    }
-    
-    func performRequestWithBody<TData: Encodable, TResult: Decodable>(_ url: URL, _ body: TData, method: HTTPMethods, headers: Headers? = nil, attempts: Int = 0) async throws -> TResult {
-        return try await withCheckedThrowingContinuation { continuation in
-            DispatchQueue.global(qos: .background).async {
-                Task {
-                    do {
-                        let requestData = try JSONEncoder().encode(body)
-                        let request = try self.createRequest(url, requestData, method: method, headers: headers)
-                        let (data, response) = try await self.session.data(for: request)
+//                        try await Task.sleep(nanoseconds: 2_000_000_000)
                         
                         try self.handleResponse(response)
                         
@@ -111,71 +72,56 @@ final class NetworkService: NSObject, NetworkProtocol {
         }
     }
     
-    private lazy var session: URLSession = {
-        let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
-        return session
-    }()
+    @discardableResult
+    func performRequestWithBody<TData: Sendable & Encodable, TResult: Sendable & Decodable>(
+        _ url: URL,
+        _ body: TData,
+        method: HTTPMethods,
+        headers: Headers? = nil
+    ) async throws -> TResult {
+        activeRequests += 1
+        defer { activeRequests -= 1}
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            DispatchQueue.global(qos: .background).async {
+                Task {
+                    do {
+                        let request = try self.createRequest(url, body, method: method, headers: headers)
+                        let (data, response) = try await URLSession.shared.data(for: request)
+                        
+                        try self.handleResponse(response)
+                        
+                        let result = try JSONDecoder().decode(TResult.self, from: data)
+                        continuation.resume(returning: result)
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                }
+            }
+        }
+    }
+    
+    func retry<T: Sendable & Decodable>(maxAttempts: Int, operation: @escaping () async throws -> T, onCancel: @escaping () async throws -> T) async rethrows -> T {
+        var attempts = 0
+        while attempts < maxAttempts {
+            do {
+                return try await operation()
+            } catch {
+                attempts += 1
+                if attempts < maxAttempts {
+                    let delay = calculateDelay(attempts: attempts)
+                    let delayInNanoseconds = UInt64(delay * 1_000_000_000)
+                    try await Task.sleep(nanoseconds: delayInNanoseconds)
+                }
+            }
+        }
+        
+        return try await onCancel()
+    }
 }
 
 // MARK: Retry request
 private extension NetworkService {
-    private func retryRequest(url: URL, method: HTTPMethods, headers: Headers?, attempts: Int, continuation: CheckedContinuation<Void, Error>) {
-        let delay = calculateDelay(attempts: attempts)
-        
-        DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
-            Task {
-                do {
-                    try await self.performRequest(url, method: method, headers: headers)
-                    continuation.resume()
-                } catch {
-                    if attempts < self.maxAttempts {
-                        self.retryRequest(url: url, method: method, headers: headers, attempts: attempts + 1, continuation: continuation)
-                    } else {
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        }
-    }
-    
-    private func retryRequest<TResult: Decodable>(url: URL, method: HTTPMethods, headers: Headers?, attempts: Int, continuation: CheckedContinuation<TResult, Error>) {
-        let delay = calculateDelay(attempts: attempts)
-        
-        DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
-            Task {
-                do {
-                    let result: TResult = try await self.performRequest(url, method: method, headers: headers, attempts: attempts)
-                    continuation.resume(returning: result)
-                } catch {
-                    if attempts < self.maxAttempts {
-                        self.retryRequest(url: url, method: method, headers: headers, attempts: attempts + 1, continuation: continuation)
-                    } else {
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        }
-    }
-    
-    private func retryRequest<TData: Encodable>(url: URL, body: TData, method: HTTPMethods, headers: Headers?, attempts: Int, continuation: CheckedContinuation<Void, Error>) {
-        let delay = calculateDelay(attempts: attempts)
-        
-        DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
-            Task {
-                do {
-                    try await self.performRequestWithBody(url, body, method: method, headers: headers, attempts: attempts)
-                    continuation.resume()
-                } catch {
-                    if attempts < self.maxAttempts {
-                        self.retryRequest(url: url, body: body, method: method, headers: headers, attempts: attempts, continuation: continuation)
-                    } else {
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        }
-    }
-    
     private func calculateDelay(attempts: Int) -> Double {
         let delay = min(minDelay * pow(factor, Double(attempts)), maxDelay)
         return delay * (1 + (Double.random(in: -jitter...jitter)))
@@ -184,7 +130,7 @@ private extension NetworkService {
 
 // MARK: Creating request
 private extension NetworkService {
-    private func createRequest(_ url: URL, method: HTTPMethods, headers: [String: String]?) throws -> URLRequest {
+    private func createRequest(_ url: URL, method: HTTPMethods, headers: Headers?) throws -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         setDefaultHeaders(for: &request)
@@ -195,7 +141,7 @@ private extension NetworkService {
         return request
     }
     
-    private func createRequest<T: Encodable>(_ url: URL, _ body: T, method: HTTPMethods, headers: [String: String]?) throws -> URLRequest {
+    private func createRequest<T: Encodable>(_ url: URL, _ body: T, method: HTTPMethods, headers: Headers?) throws -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         setDefaultHeaders(for: &request)
@@ -208,11 +154,11 @@ private extension NetworkService {
     }
     
     private func setDefaultHeaders(for request: inout URLRequest) {
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer Inglorion", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: APIHeaders.contentType.rawValue)
+        request.setValue("Bearer Inglorion", forHTTPHeaderField: APIHeaders.auth.rawValue)
     }
     
-    private func addHeaders(for request: inout URLRequest, headers: [String: String]) {
+    private func addHeaders(for request: inout URLRequest, headers: Headers) {
         headers.forEach { header in
             request.setValue(header.value, forHTTPHeaderField: header.key)
         }
@@ -223,29 +169,22 @@ private extension NetworkService {
 private extension NetworkService {
     private func handleResponse(_ response: URLResponse) throws {
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw URLError(.badServerResponse)
+            throw NetworkError.badResponse
         }
         
         switch httpResponse.statusCode {
         case 200...299:
             break
-        case 400...499:
-            throw URLError(.badURL)
+        case 400:
+            throw NetworkError.badRequest
+        case 401:
+            throw NetworkError.unauthorized
+        case 404:
+            throw NetworkError.notFound
         case 500...599:
-            throw URLError(.serverCertificateHasBadDate)
+            throw NetworkError.serverError
         default:
-            throw URLError(.unknown)
+            throw NetworkError.unknownError
         }
-    }
-}
-
-extension NetworkService: URLSessionDelegate {
-    nonisolated public func urlSession(
-        _ session: URLSession,
-        didReceive challenge: URLAuthenticationChallenge,
-        completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void
-    ) {
-        let urlCredential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
-        completionHandler(.useCredential, urlCredential)
     }
 }

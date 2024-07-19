@@ -7,6 +7,7 @@
 
 import Foundation
 import FileCacheLibrary
+import UIKit
 
 extension TodoItem {
     func modify(
@@ -32,6 +33,22 @@ extension TodoItem {
     
     func changeComplete() -> TodoItem {
         modify(isCompleted: !self.isCompleted)
+    }
+}
+
+extension TodoItem {
+    func toTodoItemNetwork() -> TodoItemNetwork {
+        TodoItemNetwork(
+            id: self.id,
+            text: self.text,
+            importance: self.importance.rawValue,
+            deadline: self.expires?.toUnixTimestamp() ?? nil,
+            done: self.isCompleted,
+            color: self.color,
+            createdAt: self.createdDate.toUnixTimestamp(),
+            changedAt: self.changedDate?.toUnixTimestamp() ?? self.createdDate.toUnixTimestamp(),
+            lastUpdatedBy: UIDevice.current.identifierForVendor!.uuidString
+        )
     }
 }
 

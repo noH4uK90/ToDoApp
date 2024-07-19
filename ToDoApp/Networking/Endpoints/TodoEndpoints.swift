@@ -26,10 +26,8 @@ enum TodoEndpoints {
         switch self {
         case .todos:
             urlComponents.queryItems = []
-        case .todo(let id):
-            urlComponents.queryItems = [
-                URLQueryItem(name: "id", value: id)
-            ]
+        case .todo:
+            urlComponents.queryItems = []
         }
         
         return urlComponents.url

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CocoaLumberjackSwift
 
 @propertyWrapper
 struct Inject<Component> {
@@ -20,7 +21,7 @@ struct Inject<Component> {
 }
 
 final class Resolver {
-    static let shared = Resolver()
+    nonisolated(unsafe) static let shared = Resolver()
     private let container = buildContainer()
     
     func resolve<T>(_ type: T.Type) -> T? {
@@ -32,11 +33,11 @@ func buildContainer() -> Container {
     let container = Container()
     
     container.register(NetworkProtocol.self) {
-        print("NetworkService registered")
+        DDLogInfo("NetworkService registered")
         return NetworkService()
     }
     container.register(TodoNetworkProtocol.self) {
-        print("TodoNetworkService registered")
+        DDLogInfo("TodoNetworkService registered")
         return TodoNetworkService()
     }
     

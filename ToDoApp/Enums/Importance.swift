@@ -6,7 +6,7 @@
 //
 
 enum Importance: String, Codable {
-    case low = "Неважная"
-    case basic = "Обычная"
-    case important = "Важная"
+    case low
+    case basic
+    case important
 }

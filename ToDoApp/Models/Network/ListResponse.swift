@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ListResponse<TItem: Codable>: Codable {
+struct ListResponse<TItem: Sendable & Codable>: Sendable, Codable {
     let status: String
     let list: [TItem]
     let revision: Int32

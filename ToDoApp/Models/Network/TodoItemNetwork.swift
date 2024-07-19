@@ -10,10 +10,10 @@ import Foundation
 struct TodoItemNetwork: Identifiable, Codable {
     let id: String
     let text: String
-    let importance: Importance
-    let deadline: Int64
+    let importance: String
+    let deadline: Int64?
     let done: Bool
-    let color: String
+    let color: String?
     let createdAt: Int64
     let changedAt: Int64
     let lastUpdatedBy: String
