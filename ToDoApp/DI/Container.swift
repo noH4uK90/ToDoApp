@@ -12,14 +12,15 @@ final class Container {
     
     func register<T>(_ type: T.Type, factory: @escaping () -> T) {
         let key = String(describing: type)
-        services[key] = factory
+        self.services[key] = factory
     }
     
     func resolve<T>(_ type: T.Type) -> T? {
         let key = String(describing: type)
-        if let factory = services[key] as? () -> T {
+        if let factory = self.services[key] as? () -> T {
             return factory()
         }
+        
         return nil
     }
 }

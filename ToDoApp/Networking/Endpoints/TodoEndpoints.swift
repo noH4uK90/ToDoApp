@@ -14,9 +14,9 @@ enum TodoEndpoints {
     func path() -> String {
         switch self {
         case .todos:
-            "/"
+            "/list"
         case .todo(let id):
-            "/\(id)"
+            "/list/\(id)"
         }
     }
     

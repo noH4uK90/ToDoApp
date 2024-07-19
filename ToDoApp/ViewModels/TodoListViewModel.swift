@@ -14,11 +14,14 @@ class TodoListViewModel: ObservableObject {
     @Published var completedCount: Int = 0
     @Published var selectedTodo: TodoItem? = nil
     
+    @Inject private var todoNetworkService: TodoNetworkProtocol
+    
     init() {
         do {
             let fileCache = FileCacheLibrary<TodoItem>()
             self.todos = try fileCache.exportFromFile()
             self.getCompletedCount()
+            self.getTodosFromNetwork()
         } catch {
             print("Error: \(error.localizedDescription)")
         }
@@ -46,5 +49,16 @@ class TodoListViewModel: ObservableObject {
     
     func getCompletedCount() {
         self.completedCount = todos.count(where: { $0.isCompleted })
+    }
+    
+    func getTodosFromNetwork() {
+        Task {
+            do {
+                let response = try await todoNetworkService.getTodos()
+                print(response)
+            } catch {
+                print("Network error: \(error)")
+            }
+        }
     }
 }

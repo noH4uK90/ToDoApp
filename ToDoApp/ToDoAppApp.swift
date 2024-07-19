@@ -15,7 +15,7 @@ struct ToDoAppApp: App {
     private let todos: [TodoItem] = [
         TodoItem(
             text: "Купить продукты",
-            importance: .usual,
+            importance: .basic,
             expires: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
             isCompleted: false,
             createdDate: Date(),
@@ -42,7 +42,7 @@ struct ToDoAppApp: App {
         ),
         TodoItem(
             text: "Прочитать книгу",
-            importance: .unimportant,
+            importance: .low,
             expires: nil,
             isCompleted: false,
             createdDate: Date(),
@@ -51,7 +51,7 @@ struct ToDoAppApp: App {
         ),
         TodoItem(
             text: "Сходить в спортзал",
-            importance: .usual,
+            importance: .basic,
             expires: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
             isCompleted: true,
             createdDate: Date(),

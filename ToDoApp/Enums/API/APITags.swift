@@ -8,5 +8,5 @@
 import Foundation
 
 enum APITags: String {
-    case todo = "/list"
+    case todo = "/todo"
 }

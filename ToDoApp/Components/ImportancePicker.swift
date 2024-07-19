@@ -13,9 +13,9 @@ struct ImportancePicker: View {
     var body: some View {
         Picker("", selection: $importance) {
             Image(systemName: "arrow.down")
-                .tag(Importance.unimportant)
+                .tag(Importance.low)
             Text("нет")
-                .tag(Importance.usual)
+                .tag(Importance.basic)
             Text("‼")
                 .tag(Importance.important)
         }
@@ -26,7 +26,7 @@ struct ImportancePicker: View {
 #Preview {
     ImportancePicker(
         importance: Binding<Importance>.constant(
-            .usual
+            .basic
         )
     )
 }

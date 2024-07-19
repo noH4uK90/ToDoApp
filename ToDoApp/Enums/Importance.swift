@@ -5,8 +5,8 @@
 //  Created by Иван Спирин on 6/21/24.
 //
 
-enum Importance: String {
-    case unimportant = "Неважная"
-    case usual = "Обычная"
+enum Importance: String, Codable {
+    case low = "Неважная"
+    case basic = "Обычная"
     case important = "Важная"
 }
