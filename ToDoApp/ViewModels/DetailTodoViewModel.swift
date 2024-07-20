@@ -12,7 +12,7 @@ import SwiftUI
 extension DetailTodoView {
     @MainActor class ViewModel: ObservableObject {
         @Published var text: String = ""
-        @Published var importance: Importance = .usual
+        @Published var importance: Importance = .basic
         @Published var expiresDate: Date = Date().addingTimeInterval(24*3600)
         @Published var selectionColor: Color = .white
         @Published var brightness: CGFloat = 0.999

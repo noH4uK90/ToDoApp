@@ -20,7 +20,7 @@ struct TodoItem: Identifiable, Hashable {
     init(
         id: String = UUID().uuidString,
         text: String,
-        importance: Importance = .usual,
+        importance: Importance = .basic,
         expires: Date? = nil,
         isCompleted: Bool = false,
         createdDate: Date = Date(),

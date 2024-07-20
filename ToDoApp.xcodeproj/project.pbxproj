@@ -18,6 +18,8 @@
 		8A1E2C692C20325B00B0EEFB /* ToDoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E2C682C20325B00B0EEFB /* ToDoAppTests.swift */; };
 		8A1E2C732C20325B00B0EEFB /* ToDoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E2C722C20325B00B0EEFB /* ToDoAppUITests.swift */; };
 		8A1E2C752C20325B00B0EEFB /* ToDoAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E2C742C20325B00B0EEFB /* ToDoAppUITestsLaunchTests.swift */; };
+		8A23ED962C4866B200C37C33 /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A23ED952C4866B200C37C33 /* ListResponse.swift */; };
+		8A23ED982C4866F600C37C33 /* ElementResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A23ED972C4866F600C37C33 /* ElementResponse.swift */; };
 		8A2D52EC2C41986100DD33F0 /* FileCacheLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 8A2D52EB2C41986100DD33F0 /* FileCacheLibrary */; };
 		8A2D52F42C41A19600DD33F0 /* URLSession.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2D52F32C41A19600DD33F0 /* URLSession.Extension.swift */; };
 		8A2D52F62C41D8A400DD33F0 /* DataTaskTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2D52F52C41D8A400DD33F0 /* DataTaskTest.swift */; };
@@ -30,7 +32,27 @@
 		8A5C92392C2728FD00DE5757 /* ImportancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5C92382C2728FD00DE5757 /* ImportancePicker.swift */; };
 		8A5C923B2C2806FF00DE5757 /* DetailTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5C923A2C2806FF00DE5757 /* DetailTodoView.swift */; };
 		8A66BFE72C3BE89900B86F16 /* TodoListView.iPadOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66BFE62C3BE89900B86F16 /* TodoListView.iPadOS.swift */; };
+		8A72AC262C45D05200759B9A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72AC252C45D05200759B9A /* Config.swift */; };
 		8A8381C72C29BCC200D0B4A9 /* FileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8381C62C29BCC200D0B4A9 /* FileExtension.swift */; };
+		8AD1E2662C45DA2C00CEB65E /* APITags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E2652C45DA2C00CEB65E /* APITags.swift */; };
+		8AD1E2682C45DAB000CEB65E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E2672C45DAB000CEB65E /* API.swift */; };
+		8AD1E26A2C45DBA000CEB65E /* APIScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E2692C45DBA000CEB65E /* APIScheme.swift */; };
+		8AD1E26C2C45DC5F00CEB65E /* APIUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E26B2C45DC5F00CEB65E /* APIUrls.swift */; };
+		8AD1E2702C45DD5D00CEB65E /* TodoEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E26F2C45DD5D00CEB65E /* TodoEndpoints.swift */; };
+		8AD1E2752C45E33200CEB65E /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E2742C45E33200CEB65E /* Resolver.swift */; };
+		8AD1E2772C45E75300CEB65E /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E2762C45E75300CEB65E /* Container.swift */; };
+		8AD1E2792C45E83800CEB65E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E2782C45E83800CEB65E /* NetworkService.swift */; };
+		8AD1E27B2C45EBEF00CEB65E /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E27A2C45EBEF00CEB65E /* HTTPMethods.swift */; };
+		8AE2B5F52C46E7DE006716E4 /* TodoNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2B5F42C46E7DE006716E4 /* TodoNetworkService.swift */; };
+		8AE2B5F82C46E93B006716E4 /* TodoItemNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2B5F72C46E93B006716E4 /* TodoItemNetwork.swift */; };
+		8AE2B5FA2C46ED06006716E4 /* Date.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2B5F92C46ED06006716E4 /* Date.Extension.swift */; };
+		8AE2B5FC2C46ED81006716E4 /* Int.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2B5FB2C46ED81006716E4 /* Int.Extension.swift */; };
+		8AF140222C4ABDDC00ACA94B /* APIHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140212C4ABDDC00ACA94B /* APIHeaders.swift */; };
+		8AF140242C4ADC2500ACA94B /* ElementRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140232C4ADC2500ACA94B /* ElementRequest.swift */; };
+		8AF140262C4ADC5C00ACA94B /* ListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140252C4ADC5C00ACA94B /* ListRequest.swift */; };
+		8AF140282C4B087400ACA94B /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140272C4B087400ACA94B /* NetworkErrors.swift */; };
+		8AF1402A2C4B364300ACA94B /* TodoItemNetwork.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140292C4B364300ACA94B /* TodoItemNetwork.Extension.swift */; };
+		8AF1402D2C4B384400ACA94B /* TodoNetworkActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF1402C2C4B384400ACA94B /* TodoNetworkActor.swift */; };
 		8AF3AEE22C37F55F00D207CD /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3AEE12C37F55F00D207CD /* TodoListViewModel.swift */; };
 		8AF4963B2C37266A00AA9393 /* DetailTodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF4963A2C37266A00AA9393 /* DetailTodoViewModel.swift */; };
 		8AF6E2E82C260E1B0097997A /* TodoListView.iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6E2E72C260E1B0097997A /* TodoListView.iOS.swift */; };
@@ -74,6 +96,8 @@
 		8A1E2C6E2C20325B00B0EEFB /* ToDoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A1E2C722C20325B00B0EEFB /* ToDoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAppUITests.swift; sourceTree = "<group>"; };
 		8A1E2C742C20325B00B0EEFB /* ToDoAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8A23ED952C4866B200C37C33 /* ListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListResponse.swift; sourceTree = "<group>"; };
+		8A23ED972C4866F600C37C33 /* ElementResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementResponse.swift; sourceTree = "<group>"; };
 		8A2D52F32C41A19600DD33F0 /* URLSession.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.Extension.swift; sourceTree = "<group>"; };
 		8A2D52F52C41D8A400DD33F0 /* DataTaskTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskTest.swift; sourceTree = "<group>"; };
 		8A345D212C25FA51000A317C /* Importance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importance.swift; sourceTree = "<group>"; };
@@ -85,7 +109,29 @@
 		8A5C92382C2728FD00DE5757 /* ImportancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportancePicker.swift; sourceTree = "<group>"; };
 		8A5C923A2C2806FF00DE5757 /* DetailTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoView.swift; sourceTree = "<group>"; };
 		8A66BFE62C3BE89900B86F16 /* TodoListView.iPadOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.iPadOS.swift; sourceTree = "<group>"; };
+		8A72AC252C45D05200759B9A /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		8A72AC272C45D3F800759B9A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		8A72AC292C45D4B100759B9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A8381C62C29BCC200D0B4A9 /* FileExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtension.swift; sourceTree = "<group>"; };
+		8AD1E2652C45DA2C00CEB65E /* APITags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITags.swift; sourceTree = "<group>"; };
+		8AD1E2672C45DAB000CEB65E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		8AD1E2692C45DBA000CEB65E /* APIScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIScheme.swift; sourceTree = "<group>"; };
+		8AD1E26B2C45DC5F00CEB65E /* APIUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrls.swift; sourceTree = "<group>"; };
+		8AD1E26F2C45DD5D00CEB65E /* TodoEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEndpoints.swift; sourceTree = "<group>"; };
+		8AD1E2742C45E33200CEB65E /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		8AD1E2762C45E75300CEB65E /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		8AD1E2782C45E83800CEB65E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = ToDoApp/NetworkService.swift; sourceTree = SOURCE_ROOT; };
+		8AD1E27A2C45EBEF00CEB65E /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
+		8AE2B5F42C46E7DE006716E4 /* TodoNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoNetworkService.swift; sourceTree = "<group>"; };
+		8AE2B5F72C46E93B006716E4 /* TodoItemNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemNetwork.swift; sourceTree = "<group>"; };
+		8AE2B5F92C46ED06006716E4 /* Date.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Extension.swift; sourceTree = "<group>"; };
+		8AE2B5FB2C46ED81006716E4 /* Int.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.Extension.swift; sourceTree = "<group>"; };
+		8AF140212C4ABDDC00ACA94B /* APIHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHeaders.swift; sourceTree = "<group>"; };
+		8AF140232C4ADC2500ACA94B /* ElementRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementRequest.swift; sourceTree = "<group>"; };
+		8AF140252C4ADC5C00ACA94B /* ListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRequest.swift; sourceTree = "<group>"; };
+		8AF140272C4B087400ACA94B /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
+		8AF140292C4B364300ACA94B /* TodoItemNetwork.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemNetwork.Extension.swift; sourceTree = "<group>"; };
+		8AF1402C2C4B384400ACA94B /* TodoNetworkActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoNetworkActor.swift; sourceTree = "<group>"; };
 		8AF3AEE12C37F55F00D207CD /* TodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
 		8AF4963A2C37266A00AA9393 /* DetailTodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoViewModel.swift; sourceTree = "<group>"; };
 		8AF6E2E72C260E1B0097997A /* TodoListView.iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.iOS.swift; sourceTree = "<group>"; };
@@ -178,16 +224,21 @@
 		8A1E2C562C20325900B0EEFB /* ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
+				8A72AC292C45D4B100759B9A /* Info.plist */,
 				8A1E2C5B2C20325B00B0EEFB /* Assets.xcassets */,
+				8AD1E2722C45E32100CEB65E /* DI */,
 				8A345D1C2C25FA08000A317C /* Enums */,
 				8A345D1D2C25FA0E000A317C /* Extensions */,
-				8A345D1E2C25FA16000A317C /* Features */,
+				8A345D1E2C25FA16000A317C /* Services */,
+				8AD1E2642C45DA1400CEB65E /* Networking */,
 				8A345D1F2C25FA1E000A317C /* Models */,
 				8AF6E2E62C260DFF0097997A /* ViewModels */,
 				8A345D202C25FA24000A317C /* Views */,
 				8AF6E2EB2C26170A0097997A /* Components */,
 				8A1E2C572C20325900B0EEFB /* ToDoAppApp.swift */,
 				8A1E2C5D2C20325B00B0EEFB /* Preview Content */,
+				8A72AC252C45D05200759B9A /* Config.swift */,
+				8A72AC272C45D3F800759B9A /* Config.xcconfig */,
 			);
 			path = ToDoApp;
 			sourceTree = "<group>";
@@ -221,6 +272,7 @@
 		8A345D1C2C25FA08000A317C /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				8AD1E2712C45DE5900CEB65E /* API */,
 				8A345D212C25FA51000A317C /* Importance.swift */,
 				8A8381C62C29BCC200D0B4A9 /* FileExtension.swift */,
 			);
@@ -235,21 +287,26 @@
 				8AF6E2F22C2638810097997A /* DateFormatter.Extension.swift */,
 				8A47475F2C3D31EE0021EDBC /* Color.Extension.swift */,
 				8A2D52F32C41A19600DD33F0 /* URLSession.Extension.swift */,
+				8AE2B5F92C46ED06006716E4 /* Date.Extension.swift */,
+				8AE2B5FB2C46ED81006716E4 /* Int.Extension.swift */,
+				8AF140292C4B364300ACA94B /* TodoItemNetwork.Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8A345D1E2C25FA16000A317C /* Features */ = {
+		8A345D1E2C25FA16000A317C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8AD1E2782C45E83800CEB65E /* NetworkService.swift */,
 			);
-			path = Features;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		8A345D1F2C25FA1E000A317C /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				8A345D232C25FA7D000A317C /* TodoItem.swift */,
+				8AE2B5F62C46E86C006716E4 /* Network */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -280,6 +337,75 @@
 				8A66BFE62C3BE89900B86F16 /* TodoListView.iPadOS.swift */,
 			);
 			path = iPadOS;
+			sourceTree = "<group>";
+		};
+		8AD1E2642C45DA1400CEB65E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1E2672C45DAB000CEB65E /* API.swift */,
+				8AF1402B2C4B383800ACA94B /* Actors */,
+				8AD1E26D2C45DD2D00CEB65E /* Endpoints */,
+				8AD1E26E2C45DD3C00CEB65E /* NetworkServices */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8AD1E26D2C45DD2D00CEB65E /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1E26F2C45DD5D00CEB65E /* TodoEndpoints.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		8AD1E26E2C45DD3C00CEB65E /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				8AE2B5F42C46E7DE006716E4 /* TodoNetworkService.swift */,
+			);
+			path = NetworkServices;
+			sourceTree = "<group>";
+		};
+		8AD1E2712C45DE5900CEB65E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1E2652C45DA2C00CEB65E /* APITags.swift */,
+				8AD1E26B2C45DC5F00CEB65E /* APIUrls.swift */,
+				8AD1E2692C45DBA000CEB65E /* APIScheme.swift */,
+				8AD1E27A2C45EBEF00CEB65E /* HTTPMethods.swift */,
+				8AF140212C4ABDDC00ACA94B /* APIHeaders.swift */,
+				8AF140272C4B087400ACA94B /* NetworkErrors.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8AD1E2722C45E32100CEB65E /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1E2742C45E33200CEB65E /* Resolver.swift */,
+				8AD1E2762C45E75300CEB65E /* Container.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		8AE2B5F62C46E86C006716E4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8AE2B5F72C46E93B006716E4 /* TodoItemNetwork.swift */,
+				8A23ED952C4866B200C37C33 /* ListResponse.swift */,
+				8A23ED972C4866F600C37C33 /* ElementResponse.swift */,
+				8AF140232C4ADC2500ACA94B /* ElementRequest.swift */,
+				8AF140252C4ADC5C00ACA94B /* ListRequest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8AF1402B2C4B383800ACA94B /* Actors */ = {
+			isa = PBXGroup;
+			children = (
+				8AF1402C2C4B384400ACA94B /* TodoNetworkActor.swift */,
+			);
+			path = Actors;
 			sourceTree = "<group>";
 		};
 		8AF6E2E62C260DFF0097997A /* ViewModels */ = {
@@ -513,12 +639,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AD1E2702C45DD5D00CEB65E /* TodoEndpoints.swift in Sources */,
 				8AF3AEE22C37F55F00D207CD /* TodoListViewModel.swift in Sources */,
+				8AE2B5FC2C46ED81006716E4 /* Int.Extension.swift in Sources */,
+				8AD1E26A2C45DBA000CEB65E /* APIScheme.swift in Sources */,
+				8AD1E2752C45E33200CEB65E /* Resolver.swift in Sources */,
 				8A8381C72C29BCC200D0B4A9 /* FileExtension.swift in Sources */,
+				8AF140262C4ADC5C00ACA94B /* ListRequest.swift in Sources */,
 				8A4747602C3D31EE0021EDBC /* Color.Extension.swift in Sources */,
 				8A345D262C25FA9E000A317C /* TodoItem.Extension.swift in Sources */,
+				8AF140242C4ADC2500ACA94B /* ElementRequest.swift in Sources */,
 				8A345D222C25FA51000A317C /* Importance.swift in Sources */,
+				8AD1E27B2C45EBEF00CEB65E /* HTTPMethods.swift in Sources */,
 				8A1E2C5A2C20325900B0EEFB /* HomeView.swift in Sources */,
+				8AF1402A2C4B364300ACA94B /* TodoItemNetwork.Extension.swift in Sources */,
 				8A2D52F42C41A19600DD33F0 /* URLSession.Extension.swift in Sources */,
 				8A47475C2C3D300C0021EDBC /* ColorPicker.swift in Sources */,
 				8AF6E2F12C262DA70097997A /* View.Extension.swift in Sources */,
@@ -527,12 +661,26 @@
 				8A47475E2C3D30B50021EDBC /* Slider.swift in Sources */,
 				8AF4963B2C37266A00AA9393 /* DetailTodoViewModel.swift in Sources */,
 				8A5C92392C2728FD00DE5757 /* ImportancePicker.swift in Sources */,
+				8AD1E2792C45E83800CEB65E /* NetworkService.swift in Sources */,
+				8AE2B5FA2C46ED06006716E4 /* Date.Extension.swift in Sources */,
 				8AF6E2E82C260E1B0097997A /* TodoListView.iOS.swift in Sources */,
+				8AF1402D2C4B384400ACA94B /* TodoNetworkActor.swift in Sources */,
+				8AF140222C4ABDDC00ACA94B /* APIHeaders.swift in Sources */,
+				8AF140282C4B087400ACA94B /* NetworkErrors.swift in Sources */,
+				8AD1E26C2C45DC5F00CEB65E /* APIUrls.swift in Sources */,
+				8AD1E2682C45DAB000CEB65E /* API.swift in Sources */,
 				8A5C923B2C2806FF00DE5757 /* DetailTodoView.swift in Sources */,
 				8A345D242C25FA7D000A317C /* TodoItem.swift in Sources */,
+				8A72AC262C45D05200759B9A /* Config.swift in Sources */,
 				8AF6E2EA2C2612BD0097997A /* TodoItemView.swift in Sources */,
 				8AF6E2ED2C2617200097997A /* IsCompletedButton.swift in Sources */,
+				8AD1E2772C45E75300CEB65E /* Container.swift in Sources */,
 				8A1E2C582C20325900B0EEFB /* ToDoAppApp.swift in Sources */,
+				8AE2B5F52C46E7DE006716E4 /* TodoNetworkService.swift in Sources */,
+				8AD1E2662C45DA2C00CEB65E /* APITags.swift in Sources */,
+				8A23ED982C4866F600C37C33 /* ElementResponse.swift in Sources */,
+				8AE2B5F82C46E93B006716E4 /* TodoItemNetwork.swift in Sources */,
+				8A23ED962C4866B200C37C33 /* ListResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +720,7 @@
 /* Begin XCBuildConfiguration section */
 		8A1E2C762C20325B00B0EEFB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A72AC272C45D3F800759B9A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -635,6 +784,7 @@
 		};
 		8A1E2C772C20325B00B0EEFB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A72AC272C45D3F800759B9A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -701,6 +851,7 @@
 				DEVELOPMENT_TEAM = U8B83989B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDoApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -715,6 +866,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = noh4uk.ToDoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -732,6 +884,7 @@
 				DEVELOPMENT_TEAM = U8B83989B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDoApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -746,6 +899,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = noh4uk.ToDoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -760,7 +914,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U8B83989B5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = noh4uk.ToDoAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -780,7 +934,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U8B83989B5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = noh4uk.ToDoAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -799,6 +953,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U8B83989B5;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = noh4uk.ToDoAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -817,6 +972,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U8B83989B5;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = noh4uk.ToDoAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

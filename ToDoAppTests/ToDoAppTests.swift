@@ -32,7 +32,7 @@ class TodoItemTests: XCTestCase {
         let todoItem = TodoItem(text: text)
 
         XCTAssertEqual(todoItem.text, text)
-        XCTAssertEqual(todoItem.importance, .usual)
+        XCTAssertEqual(todoItem.importance, .basic)
         XCTAssertNil(todoItem.expires)
         XCTAssertFalse(todoItem.isCompleted)
     }
@@ -89,7 +89,7 @@ class TodoItemTests: XCTestCase {
         XCTAssertNotNil(todoItem)
         XCTAssertEqual(todoItem?.id, "DB5FEF23-DF9E-4286-BB16-DBC94A869FBA")
         XCTAssertEqual(todoItem?.text, "Сделать что-то")
-        XCTAssertEqual(todoItem?.importance, .usual)
+        XCTAssertEqual(todoItem?.importance, .basic)
         XCTAssertNil(todoItem?.expires)
         XCTAssertEqual(todoItem?.isCompleted, false)
     }
