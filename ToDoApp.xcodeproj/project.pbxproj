@@ -37,14 +37,12 @@
 		8A66BFE72C3BE89900B86F16 /* TodoListView.iPadOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A66BFE62C3BE89900B86F16 /* TodoListView.iPadOS.swift */; };
 		8A72AC262C45D05200759B9A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72AC252C45D05200759B9A /* Config.swift */; };
 		8A8381C72C29BCC200D0B4A9 /* FileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8381C62C29BCC200D0B4A9 /* FileExtension.swift */; };
-<<<<<<< HEAD
 		8AAF68832C45967F00A2889F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF68822C45967F00A2889F /* CalendarViewController.swift */; };
 		8AB547062C43E64500E7ED5D /* Date.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB547052C43E64500E7ED5D /* Date.Extension.swift */; };
 		8AB547092C441C2F00E7ED5D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB547082C441C2900E7ED5D /* CalendarView.swift */; };
 		8AB5470C2C441DD500E7ED5D /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5470B2C441DCE00E7ED5D /* DateCollectionViewCell.swift */; };
 		8AB5470E2C44208D00E7ED5D /* String.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5470D2C44208D00E7ED5D /* String.Extension.swift */; };
 		8AB547102C4458FB00E7ED5D /* DateCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB5470F2C4458FB00E7ED5D /* DateCollectionViewController.swift */; };
-=======
 		8AD1E2662C45DA2C00CEB65E /* APITags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E2652C45DA2C00CEB65E /* APITags.swift */; };
 		8AD1E2682C45DAB000CEB65E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E2672C45DAB000CEB65E /* API.swift */; };
 		8AD1E26A2C45DBA000CEB65E /* APIScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1E2692C45DBA000CEB65E /* APIScheme.swift */; };
@@ -64,7 +62,6 @@
 		8AF140282C4B087400ACA94B /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140272C4B087400ACA94B /* NetworkErrors.swift */; };
 		8AF1402A2C4B364300ACA94B /* TodoItemNetwork.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140292C4B364300ACA94B /* TodoItemNetwork.Extension.swift */; };
 		8AF1402D2C4B384400ACA94B /* TodoNetworkActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF1402C2C4B384400ACA94B /* TodoNetworkActor.swift */; };
->>>>>>> c4df29bfdebdafea36fb37b547d3ecb9dd2a32ca
 		8AF3AEE22C37F55F00D207CD /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3AEE12C37F55F00D207CD /* TodoListViewModel.swift */; };
 		8AF4963B2C37266A00AA9393 /* DetailTodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF4963A2C37266A00AA9393 /* DetailTodoViewModel.swift */; };
 		8AF6E2E82C260E1B0097997A /* TodoListView.iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6E2E72C260E1B0097997A /* TodoListView.iOS.swift */; };
@@ -128,14 +125,12 @@
 		8A72AC272C45D3F800759B9A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8A72AC292C45D4B100759B9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A8381C62C29BCC200D0B4A9 /* FileExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtension.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		8AAF68822C45967F00A2889F /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		8AB547052C43E64500E7ED5D /* Date.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Extension.swift; sourceTree = "<group>"; };
 		8AB547082C441C2900E7ED5D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		8AB5470B2C441DCE00E7ED5D /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		8AB5470D2C44208D00E7ED5D /* String.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.Extension.swift; sourceTree = "<group>"; };
 		8AB5470F2C4458FB00E7ED5D /* DateCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewController.swift; sourceTree = "<group>"; };
-=======
 		8AD1E2652C45DA2C00CEB65E /* APITags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITags.swift; sourceTree = "<group>"; };
 		8AD1E2672C45DAB000CEB65E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8AD1E2692C45DBA000CEB65E /* APIScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIScheme.swift; sourceTree = "<group>"; };
@@ -155,7 +150,6 @@
 		8AF140272C4B087400ACA94B /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		8AF140292C4B364300ACA94B /* TodoItemNetwork.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemNetwork.Extension.swift; sourceTree = "<group>"; };
 		8AF1402C2C4B384400ACA94B /* TodoNetworkActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoNetworkActor.swift; sourceTree = "<group>"; };
->>>>>>> c4df29bfdebdafea36fb37b547d3ecb9dd2a32ca
 		8AF3AEE12C37F55F00D207CD /* TodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
 		8AF4963A2C37266A00AA9393 /* DetailTodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoViewModel.swift; sourceTree = "<group>"; };
 		8AF6E2E72C260E1B0097997A /* TodoListView.iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.iOS.swift; sourceTree = "<group>"; };
@@ -311,14 +305,11 @@
 				8AF6E2F22C2638810097997A /* DateFormatter.Extension.swift */,
 				8A47475F2C3D31EE0021EDBC /* Color.Extension.swift */,
 				8A2D52F32C41A19600DD33F0 /* URLSession.Extension.swift */,
-<<<<<<< HEAD
 				8AB547052C43E64500E7ED5D /* Date.Extension.swift */,
 				8AB5470D2C44208D00E7ED5D /* String.Extension.swift */,
-=======
 				8AE2B5F92C46ED06006716E4 /* Date.Extension.swift */,
 				8AE2B5FB2C46ED81006716E4 /* Int.Extension.swift */,
 				8AF140292C4B364300ACA94B /* TodoItemNetwork.Extension.swift */,
->>>>>>> c4df29bfdebdafea36fb37b547d3ecb9dd2a32ca
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -369,7 +360,6 @@
 			path = iPadOS;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		8AAF68802C45963100A2889F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,7 +404,6 @@
 				8A12308F2C456B31002BFAE3 /* TodoTableHeader.swift */,
 			);
 			path = Components;
-=======
 		8AD1E2642C45DA1400CEB65E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,7 +471,6 @@
 				8AF1402C2C4B384400ACA94B /* TodoNetworkActor.swift */,
 			);
 			path = Actors;
->>>>>>> c4df29bfdebdafea36fb37b547d3ecb9dd2a32ca
 			sourceTree = "<group>";
 		};
 		8AF6E2E62C260DFF0097997A /* ViewModels */ = {
@@ -727,11 +715,8 @@
 				8A345D262C25FA9E000A317C /* TodoItem.Extension.swift in Sources */,
 				8AF140242C4ADC2500ACA94B /* ElementRequest.swift in Sources */,
 				8A345D222C25FA51000A317C /* Importance.swift in Sources */,
-<<<<<<< HEAD
 				8A12308E2C453220002BFAE3 /* TodoTableCell.swift in Sources */,
-=======
 				8AD1E27B2C45EBEF00CEB65E /* HTTPMethods.swift in Sources */,
->>>>>>> c4df29bfdebdafea36fb37b547d3ecb9dd2a32ca
 				8A1E2C5A2C20325900B0EEFB /* HomeView.swift in Sources */,
 				8AF1402A2C4B364300ACA94B /* TodoItemNetwork.Extension.swift in Sources */,
 				8A2D52F42C41A19600DD33F0 /* URLSession.Extension.swift in Sources */,
@@ -757,25 +742,19 @@
 				8A5C923B2C2806FF00DE5757 /* DetailTodoView.swift in Sources */,
 				8AB5470E2C44208D00E7ED5D /* String.Extension.swift in Sources */,
 				8A345D242C25FA7D000A317C /* TodoItem.swift in Sources */,
-<<<<<<< HEAD
 				8AAF68832C45967F00A2889F /* CalendarViewController.swift in Sources */,
 				8A1230902C456B31002BFAE3 /* TodoTableHeader.swift in Sources */,
-=======
 				8A72AC262C45D05200759B9A /* Config.swift in Sources */,
->>>>>>> c4df29bfdebdafea36fb37b547d3ecb9dd2a32ca
 				8AF6E2EA2C2612BD0097997A /* TodoItemView.swift in Sources */,
 				8AF6E2ED2C2617200097997A /* IsCompletedButton.swift in Sources */,
 				8AD1E2772C45E75300CEB65E /* Container.swift in Sources */,
 				8A1E2C582C20325900B0EEFB /* ToDoAppApp.swift in Sources */,
-<<<<<<< HEAD
 				8A12308C2C453214002BFAE3 /* TodoTableViewController.swift in Sources */,
-=======
 				8AE2B5F52C46E7DE006716E4 /* TodoNetworkService.swift in Sources */,
 				8AD1E2662C45DA2C00CEB65E /* APITags.swift in Sources */,
 				8A23ED982C4866F600C37C33 /* ElementResponse.swift in Sources */,
 				8AE2B5F82C46E93B006716E4 /* TodoItemNetwork.swift in Sources */,
 				8A23ED962C4866B200C37C33 /* ListResponse.swift in Sources */,
->>>>>>> c4df29bfdebdafea36fb37b547d3ecb9dd2a32ca
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
