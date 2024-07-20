@@ -12,3 +12,7 @@ extension Date {
         let dateFormatter = DateFormatter.prettyFormat(format: format)
         return dateFormatter.string(from: self)
     }}
+    func toUnixTimestamp() -> Int64 {
+        Int64(self.timeIntervalSince1970)
+    }
+}
