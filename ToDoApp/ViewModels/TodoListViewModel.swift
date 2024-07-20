@@ -20,24 +20,6 @@ class TodoListViewModel: ObservableObject {
     private let todoActor = TodoNetworkActor()
     private var bag = Set<AnyCancellable>()
     
-    var todosGroupedByDate: [String: [TodoItem]] {
-        Dictionary(grouping: self.todos.sorted(by: { first, second in
-            if first.expires == nil {
-                return false
-            } else if second.expires == nil {
-                return true
-            } else {
-                return first.expires!.compare(second.expires!) == .orderedAscending
-            }
-        }), by: { todo in
-            if let date = todo.expires {
-                return date.toPretty(format: "dd MMMM")
-            } else {
-                return "Другое"
-            }
-        })
-    }
-    
     init() {
         do {
 //            let fileCache = FileCacheLibrary<TodoItem>()
