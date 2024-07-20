@@ -298,7 +298,6 @@
 				8A47475F2C3D31EE0021EDBC /* Color.Extension.swift */,
 				8A2D52F32C41A19600DD33F0 /* URLSession.Extension.swift */,
 <<<<<<< HEAD
-=======
 				8AE2B5F92C46ED06006716E4 /* Date.Extension.swift */,
 				8AE2B5FB2C46ED81006716E4 /* Int.Extension.swift */,
 				8AF140292C4B364300ACA94B /* TodoItemNetwork.Extension.swift */,
