@@ -310,6 +310,9 @@
 				8AF140292C4B364300ACA94B /* TodoItemNetwork.Extension.swift */,
 				8AB547052C43E64500E7ED5D /* Date.Extension.swift */,
 				8AB5470D2C44208D00E7ED5D /* String.Extension.swift */,
+				8AE2B5F92C46ED06006716E4 /* Date.Extension.swift */,
+				8AE2B5FB2C46ED81006716E4 /* Int.Extension.swift */,
+				8AF140292C4B364300ACA94B /* TodoItemNetwork.Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -473,6 +476,73 @@
 				8A12308F2C456B31002BFAE3 /* TodoTableHeader.swift */,
 			);
 			path = Components;
+		8AD1E2642C45DA1400CEB65E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1E2672C45DAB000CEB65E /* API.swift */,
+				8AF1402B2C4B383800ACA94B /* Actors */,
+				8AD1E26D2C45DD2D00CEB65E /* Endpoints */,
+				8AD1E26E2C45DD3C00CEB65E /* NetworkServices */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8AD1E26D2C45DD2D00CEB65E /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1E26F2C45DD5D00CEB65E /* TodoEndpoints.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		8AD1E26E2C45DD3C00CEB65E /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				8AE2B5F42C46E7DE006716E4 /* TodoNetworkService.swift */,
+			);
+			path = NetworkServices;
+			sourceTree = "<group>";
+		};
+		8AD1E2712C45DE5900CEB65E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1E2652C45DA2C00CEB65E /* APITags.swift */,
+				8AD1E26B2C45DC5F00CEB65E /* APIUrls.swift */,
+				8AD1E2692C45DBA000CEB65E /* APIScheme.swift */,
+				8AD1E27A2C45EBEF00CEB65E /* HTTPMethods.swift */,
+				8AF140212C4ABDDC00ACA94B /* APIHeaders.swift */,
+				8AF140272C4B087400ACA94B /* NetworkErrors.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8AD1E2722C45E32100CEB65E /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				8AD1E2742C45E33200CEB65E /* Resolver.swift */,
+				8AD1E2762C45E75300CEB65E /* Container.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		8AE2B5F62C46E86C006716E4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8AE2B5F72C46E93B006716E4 /* TodoItemNetwork.swift */,
+				8A23ED952C4866B200C37C33 /* ListResponse.swift */,
+				8A23ED972C4866F600C37C33 /* ElementResponse.swift */,
+				8AF140232C4ADC2500ACA94B /* ElementRequest.swift */,
+				8AF140252C4ADC5C00ACA94B /* ListRequest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8AF1402B2C4B383800ACA94B /* Actors */ = {
+			isa = PBXGroup;
+			children = (
+				8AF1402C2C4B384400ACA94B /* TodoNetworkActor.swift */,
+			);
+			path = Actors;
 			sourceTree = "<group>";
 		};
 		8AF6E2E62C260DFF0097997A /* ViewModels */ = {
@@ -718,6 +788,7 @@
 				8AF140242C4ADC2500ACA94B /* ElementRequest.swift in Sources */,
 				8A345D222C25FA51000A317C /* Importance.swift in Sources */,
 				8A12308E2C453220002BFAE3 /* TodoTableCell.swift in Sources */,
+				8AD1E27B2C45EBEF00CEB65E /* HTTPMethods.swift in Sources */,
 				8A1E2C5A2C20325900B0EEFB /* HomeView.swift in Sources */,
 				8AF1402A2C4B364300ACA94B /* TodoItemNetwork.Extension.swift in Sources */,
 				8A2D52F42C41A19600DD33F0 /* URLSession.Extension.swift in Sources */,
@@ -746,6 +817,7 @@
 				8A72AC262C45D05200759B9A /* Config.swift in Sources */,
 				8AAF68832C45967F00A2889F /* CalendarViewController.swift in Sources */,
 				8A1230902C456B31002BFAE3 /* TodoTableHeader.swift in Sources */,
+				8A72AC262C45D05200759B9A /* Config.swift in Sources */,
 				8AF6E2EA2C2612BD0097997A /* TodoItemView.swift in Sources */,
 				8AF6E2ED2C2617200097997A /* IsCompletedButton.swift in Sources */,
 				8AD1E2772C45E75300CEB65E /* Container.swift in Sources */,
@@ -756,6 +828,11 @@
 				8AE2B5F82C46E93B006716E4 /* TodoItemNetwork.swift in Sources */,
 				8A23ED962C4866B200C37C33 /* ListResponse.swift in Sources */,
 				8A12308C2C453214002BFAE3 /* TodoTableViewController.swift in Sources */,
+				8AE2B5F52C46E7DE006716E4 /* TodoNetworkService.swift in Sources */,
+				8AD1E2662C45DA2C00CEB65E /* APITags.swift in Sources */,
+				8A23ED982C4866F600C37C33 /* ElementResponse.swift in Sources */,
+				8AE2B5F82C46E93B006716E4 /* TodoItemNetwork.swift in Sources */,
+				8A23ED962C4866B200C37C33 /* ListResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
