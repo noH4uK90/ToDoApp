@@ -50,6 +50,14 @@ struct TodoListView_iOS: View {
                 })
             }
             .navigationTitle("Мои дела")
+            .toolbar {
+                if viewModel.isActive {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    }
+                }
+            }
         }
     }
     

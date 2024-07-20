@@ -161,7 +161,8 @@ struct DetailTodoView: View {
                 }
             },
             label: {
-                Text(viewModel.expiresDate.toPretty(format: "dd MMMM yyyy"))
+                let text = DateFormatter.prettyFormat(format: "dd LLLL yyyy").string(from: viewModel.expiresDate)
+                Text(text)
                     .font(.footnote)
                     .fontWeight(.bold)
             }

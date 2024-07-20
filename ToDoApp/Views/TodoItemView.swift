@@ -28,8 +28,9 @@ struct TodoItemView: View {
                 }
                 HStack {
                     Image(systemName: "calendar")
-                    Text(todo.expires?.toPretty(format: "dd MMMM") ?? "")
+                    Text(todo.expires ?? Date(), formatter: DateFormatter.prettyFormat(format: "dd LLLL"))
                 }
+                
                 .isHidden(todo.expires == nil || todo.isCompleted, remove: true)
                 .font(.footnote)
                 .foregroundStyle(.secondary)

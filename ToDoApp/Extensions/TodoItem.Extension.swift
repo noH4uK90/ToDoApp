@@ -7,6 +7,7 @@
 
 import Foundation
 import FileCacheLibrary
+import UIKit
 
 extension TodoItem {
     func modify(
@@ -35,6 +36,22 @@ extension TodoItem {
     }
 }
 
+extension TodoItem {
+    func toTodoItemNetwork() -> TodoItemNetwork {
+        TodoItemNetwork(
+            id: self.id,
+            text: self.text,
+            importance: self.importance.rawValue,
+            deadline: self.expires?.toUnixTimestamp() ?? nil,
+            done: self.isCompleted,
+            color: self.color,
+            createdAt: self.createdDate.toUnixTimestamp(),
+            changedAt: self.changedDate?.toUnixTimestamp() ?? self.createdDate.toUnixTimestamp(),
+            lastUpdatedBy: UIDevice.current.identifierForVendor!.uuidString
+        )
+    }
+}
+
 // MARK: Json parsing
 extension TodoItem: JSONable {
     var json: Any {
@@ -44,7 +61,7 @@ extension TodoItem: JSONable {
             "isCompleted": isCompleted,
             "createdDate": createdDate.ISO8601Format()
         ]
-        if importance != Importance.usual {
+        if importance != Importance.basic {
             todo["importance"] = importance.rawValue
         }
         
@@ -78,7 +95,7 @@ extension TodoItem: JSONable {
         }
         
         let importanceString = dictionary["importance"] as? String
-        let importance = Importance(rawValue: importanceString ?? "Обычная") ?? .usual
+        let importance = Importance(rawValue: importanceString ?? "Обычная") ?? .basic
         
         var expires: Date? = nil
         if let expiresString = dictionary["expires"] as? String {

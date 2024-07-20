@@ -19,9 +19,9 @@ class DataTaskTest: XCTestCase {
         let urlRequest = URLRequest(url: url)
         let expectation = XCTestExpectation(description: "Task should succeed")
         
-        _ = Task {
+        let task = Task {
             do {
-                let (_, response) = try await URLSession.shared.data(for: urlRequest)
+                let (data, response) = try await URLSession.shared.data(for: urlRequest)
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                     expectation.fulfill()
                 } else {
@@ -40,7 +40,7 @@ class DataTaskTest: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Task should fail with network error")
         
-        let _ = Task {
+        let task = Task {
             do {
                 let _ = try await URLSession.shared.data(for: urlRequest)
                 XCTFail("Expected network error, but got success")
