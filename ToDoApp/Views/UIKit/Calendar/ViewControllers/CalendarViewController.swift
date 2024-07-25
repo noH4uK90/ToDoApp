@@ -10,14 +10,36 @@ import UIKit
 
 class CalendarViewController: UIViewController {
 
-    private var viewModel: TodoListViewModel
-    private var dateCollectionViewController: DateCollectionViewController
-    private var todoTableViewController: TodoTableViewController
+    var viewModel: TodoListViewModel
+    
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 10
+
+        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.identifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
+    lazy var table: UITableView = {
+        let table = UITableView(frame: .zero, style: .insetGrouped)
+        table.register(TodoTableHeader.self, forHeaderFooterViewReuseIdentifier: TodoTableHeader.identifier)
+        table.register(TodoTableCell.self, forCellReuseIdentifier: TodoTableCell.identifier)
+        table.dataSource = self
+        table.delegate = self
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.showsVerticalScrollIndicator = false
+        return table
+    }()
 
     init(viewModel: TodoListViewModel) {
         self.viewModel = viewModel
-        self.dateCollectionViewController = DateCollectionViewController(viewModel: viewModel)
-        self.todoTableViewController = TodoTableViewController(viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -27,36 +49,30 @@ class CalendarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        addChild(dateCollectionViewController)
-        addChild(todoTableViewController)
-
-        view.addSubview(dateCollectionViewController.view)
-        view.addSubview(todoTableViewController.view)
+        
+        view.addSubview(collectionView)
+        view.addSubview(table)
 
         setupConstraints()
-
-        dateCollectionViewController.didMove(toParent: self)
-        todoTableViewController.didMove(toParent: self)
     }
 }
 
 // MARK: Constraints
 extension CalendarViewController {
     private func setupConstraints() {
-        dateCollectionViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        todoTableViewController.view.translatesAutoresizingMaskIntoConstraints = false
-
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        table.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            dateCollectionViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            dateCollectionViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            dateCollectionViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            dateCollectionViewController.view.heightAnchor.constraint(equalToConstant: 100),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            collectionView.heightAnchor.constraint(equalToConstant: 80),
 
-            todoTableViewController.view.topAnchor.constraint(equalTo: dateCollectionViewController.view.bottomAnchor),
-            todoTableViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            todoTableViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            todoTableViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            table.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            table.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

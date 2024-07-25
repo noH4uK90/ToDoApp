@@ -57,8 +57,108 @@ struct ToDoAppApp: App {
             createdDate: Date(),
             changedDate: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
             color: "#A133FF"
+        ),
+        TodoItem(
+            text: "Сходить в спортзал 2",
+            importance: .basic,
+            expires: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
+            isCompleted: true,
+            createdDate: Date(),
+            changedDate: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
+            color: "#A133FF"
+        ),
+        TodoItem(
+            text: "Написать отчет",
+            importance: .important,
+            expires: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
+            isCompleted: false,
+            createdDate: Date(),
+            changedDate: nil,
+            color: "#FF5733"
+        ),
+        TodoItem(
+            text: "Сделать домашнее задание",
+            importance: .basic,
+            expires: Calendar.current.date(byAdding: .day, value: 5, to: Date()),
+            isCompleted: false,
+            createdDate: Date(),
+            changedDate: nil,
+            color: "#33FF57"
+        ),
+        TodoItem(
+            text: "Позвонить другу",
+            importance: .low,
+            expires: Calendar.current.date(byAdding: .hour, value: 4, to: Date()),
+            isCompleted: false,
+            createdDate: Date(),
+            changedDate: nil,
+            color: "#3357FF"
+        ),
+        TodoItem(
+            text: "Пойти на встречу",
+            importance: .important,
+            expires: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
+            isCompleted: false,
+            createdDate: Date(),
+            changedDate: nil,
+            color: "#FF33A1"
+        ),
+        TodoItem(
+            text: "Сделать уборку",
+            importance: .basic,
+            expires: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
+            isCompleted: true,
+            createdDate: Date(),
+            changedDate: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
+            color: "#A133FF"
+        ),
+        TodoItem(
+            text: "Пойти на пробежку",
+            importance: .low,
+            expires: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
+            isCompleted: false,
+            createdDate: Date(),
+            changedDate: nil,
+            color: "#FF5733"
+        ),
+        TodoItem(
+            text: "Посмотреть фильм",
+            importance: .low,
+            expires: nil,
+            isCompleted: false,
+            createdDate: Date(),
+            changedDate: nil,
+            color: "#33FF57"
+        ),
+        TodoItem(
+            text: "Сходить к врачу",
+            importance: .important,
+            expires: Calendar.current.date(byAdding: .day, value: 4, to: Date()),
+            isCompleted: false,
+            createdDate: Date(),
+            changedDate: nil,
+            color: "#3357FF"
+        ),
+        TodoItem(
+            text: "Купить подарок",
+            importance: .basic,
+            expires: Calendar.current.date(byAdding: .day, value: 6, to: Date()),
+            isCompleted: false,
+            createdDate: Date(),
+            changedDate: nil,
+            color: "#FF33A1"
+        ),
+        TodoItem(
+            text: "Сделать резервное копирование",
+            importance: .important,
+            expires: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
+            isCompleted: false,
+            createdDate: Date(),
+            changedDate: nil,
+            color: "#A133FF"
         )
     ]
+
     
     init() {
         DDLog.add(DDOSLogger.sharedInstance)

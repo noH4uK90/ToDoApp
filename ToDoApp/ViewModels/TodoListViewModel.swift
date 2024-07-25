@@ -40,20 +40,21 @@ class TodoListViewModel: ObservableObject {
     
     init() {
         do {
-//            let fileCache = FileCacheLibrary<TodoItem>()
-//            self.todos = try fileCache.exportFromFile()
+            let fileCache = FileCacheLibrary<TodoItem>()
+            self.todos = try fileCache.exportFromFile()
             Task {
                 await todoActor.$activeRequests
                     .receive(on: RunLoop.current)
                     .sink(
                         receiveCompletion: { _ in },
                         receiveValue: { [weak self] value in
+                            print("Requests thread: \(Thread.current)")
                             self?.isActive = value > 0
                         }
                     )
                     .store(in: &bag)
             }
-            self.getTodosFromNetwork()
+//            self.getTodosFromNetwork()
             self.getCompletedCount()
         } catch {
             print("Error: \(error.localizedDescription)")

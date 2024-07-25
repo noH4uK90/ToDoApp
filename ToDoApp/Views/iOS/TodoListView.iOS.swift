@@ -42,7 +42,10 @@ struct TodoListView_iOS: View {
                 }.textCase(nil)
             }
             .overlay(alignment: .bottom) {
-                addButton
+                AddButton {
+                    viewModel.selectedTodo = nil
+                    isShowSheet.toggle()
+                }
             }
             .sheet(isPresented: $isShowSheet) {
                 DetailTodoView(todo: viewModel.selectedTodo, onSave: { todo in
@@ -52,10 +55,16 @@ struct TodoListView_iOS: View {
             .navigationTitle("Мои дела")
             .toolbar {
                 if viewModel.isActive {
-                    ToolbarItem(placement: .topBarTrailing) {
+                    ToolbarItem(placement: .topBarLeading) {
                         ProgressView()
                             .progressViewStyle(.circular)
                     }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: CalendarView(), label: {
+                        Image(systemName: "calendar")
+                    })
                 }
             }
         }
@@ -69,24 +78,6 @@ struct TodoListView_iOS: View {
                 
             }
         }
-    }
-    
-    var addButton: some View {
-        Button(
-            action: {
-                viewModel.selectedTodo = nil
-                isShowSheet.toggle()
-            },
-            label: {
-                Image(systemName: "plus")
-                    .fontWeight(.bold)
-                    .imageScale(.large)
-                    .foregroundStyle(.white)
-                    .frame(width: 44, height: 44)
-                    .background(Color(UIColor.systemBlue).shadow(.drop(color: .black.opacity(0.25), radius: 7, x: 0, y: 10)), in: .circle)
-                    .frame(width: 44, height: 44)
-            }
-        )
     }
     
     @ViewBuilder

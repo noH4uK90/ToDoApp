@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-struct CalendarView: UIViewControllerRepresentable {
+struct CalendarViewRepresentable: UIViewControllerRepresentable {
     let viewModel = TodoListViewModel()
 
     func makeUIViewController(context: Context) -> some UIViewController {

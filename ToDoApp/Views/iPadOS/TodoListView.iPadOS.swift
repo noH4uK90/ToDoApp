@@ -43,7 +43,9 @@ struct TodoListView_iPadOS: View {
                     }
                 }
                 .overlay(alignment: .bottom) {
-                    addButton
+                    AddButton {
+                        viewModel.selectedTodo = nil
+                    }
                 }
                 .navigationTitle("Мои дела")
             },
@@ -69,23 +71,6 @@ struct TodoListView_iPadOS: View {
                 
             }
         }
-    }
-    
-    var addButton: some View {
-        Button(
-            action: {
-                viewModel.selectedTodo = nil
-            },
-            label: {
-                Image(systemName: "plus")
-                    .fontWeight(.bold)
-                    .imageScale(.large)
-                    .foregroundStyle(.white)
-                    .frame(width: 44, height: 44)
-                    .background(Color(UIColor.systemBlue).shadow(.drop(color: .black.opacity(0.25), radius: 7, x: 0, y: 10)), in: .circle)
-                    .frame(width: 44, height: 44)
-            }
-        )
     }
     
     @ViewBuilder
