@@ -47,6 +47,10 @@
 		8AE2B5F82C46E93B006716E4 /* TodoItemNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2B5F72C46E93B006716E4 /* TodoItemNetwork.swift */; };
 		8AE2B5FA2C46ED06006716E4 /* Date.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2B5F92C46ED06006716E4 /* Date.Extension.swift */; };
 		8AE2B5FC2C46ED81006716E4 /* Int.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2B5FB2C46ED81006716E4 /* Int.Extension.swift */; };
+		8AED39ED2C52F25D007F4C19 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8AED39EC2C52F25D007F4C19 /* Settings.bundle */; };
+		8AED39EF2C544D17007F4C19 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED39EE2C544D17007F4C19 /* FileCache.swift */; };
+		8AED39F22C544DA0007F4C19 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED39F12C544DA0007F4C19 /* DataStorage.swift */; };
+		8AED39F72C544EDD007F4C19 /* TodoItemDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED39F62C544EDD007F4C19 /* TodoItemDb.swift */; };
 		8AF140222C4ABDDC00ACA94B /* APIHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140212C4ABDDC00ACA94B /* APIHeaders.swift */; };
 		8AF140242C4ADC2500ACA94B /* ElementRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140232C4ADC2500ACA94B /* ElementRequest.swift */; };
 		8AF140262C4ADC5C00ACA94B /* ListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF140252C4ADC5C00ACA94B /* ListRequest.swift */; };
@@ -126,6 +130,10 @@
 		8AE2B5F72C46E93B006716E4 /* TodoItemNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemNetwork.swift; sourceTree = "<group>"; };
 		8AE2B5F92C46ED06006716E4 /* Date.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Extension.swift; sourceTree = "<group>"; };
 		8AE2B5FB2C46ED81006716E4 /* Int.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.Extension.swift; sourceTree = "<group>"; };
+		8AED39EC2C52F25D007F4C19 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		8AED39EE2C544D17007F4C19 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileCache.swift; path = ToDoApp/Persistence/FileCache/FileCache.swift; sourceTree = SOURCE_ROOT; };
+		8AED39F12C544DA0007F4C19 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
+		8AED39F62C544EDD007F4C19 /* TodoItemDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemDb.swift; sourceTree = "<group>"; };
 		8AF140212C4ABDDC00ACA94B /* APIHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHeaders.swift; sourceTree = "<group>"; };
 		8AF140232C4ADC2500ACA94B /* ElementRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementRequest.swift; sourceTree = "<group>"; };
 		8AF140252C4ADC5C00ACA94B /* ListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRequest.swift; sourceTree = "<group>"; };
@@ -230,6 +238,7 @@
 				8A345D1C2C25FA08000A317C /* Enums */,
 				8A345D1D2C25FA0E000A317C /* Extensions */,
 				8A345D1E2C25FA16000A317C /* Services */,
+				8AED39F32C544E44007F4C19 /* Persistence */,
 				8AD1E2642C45DA1400CEB65E /* Networking */,
 				8A345D1F2C25FA1E000A317C /* Models */,
 				8AF6E2E62C260DFF0097997A /* ViewModels */,
@@ -239,6 +248,7 @@
 				8A1E2C5D2C20325B00B0EEFB /* Preview Content */,
 				8A72AC252C45D05200759B9A /* Config.swift */,
 				8A72AC272C45D3F800759B9A /* Config.xcconfig */,
+				8AED39EC2C52F25D007F4C19 /* Settings.bundle */,
 			);
 			path = ToDoApp;
 			sourceTree = "<group>";
@@ -275,6 +285,7 @@
 				8AD1E2712C45DE5900CEB65E /* API */,
 				8A345D212C25FA51000A317C /* Importance.swift */,
 				8A8381C62C29BCC200D0B4A9 /* FileExtension.swift */,
+				8AED39F12C544DA0007F4C19 /* DataStorage.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -398,6 +409,31 @@
 				8AF140252C4ADC5C00ACA94B /* ListRequest.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		8AED39F32C544E44007F4C19 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				8AED39F52C544ECF007F4C19 /* PersistenceModels */,
+				8AED39F42C544E54007F4C19 /* FileCache */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		8AED39F42C544E54007F4C19 /* FileCache */ = {
+			isa = PBXGroup;
+			children = (
+				8AED39EE2C544D17007F4C19 /* FileCache.swift */,
+			);
+			path = FileCache;
+			sourceTree = "<group>";
+		};
+		8AED39F52C544ECF007F4C19 /* PersistenceModels */ = {
+			isa = PBXGroup;
+			children = (
+				8AED39F62C544EDD007F4C19 /* TodoItemDb.swift */,
+			);
+			path = PersistenceModels;
 			sourceTree = "<group>";
 		};
 		8AF1402B2C4B383800ACA94B /* Actors */ = {
@@ -545,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A1E2C5F2C20325B00B0EEFB /* Preview Assets.xcassets in Resources */,
+				8AED39ED2C52F25D007F4C19 /* Settings.bundle in Resources */,
 				8A1E2C5C2C20325B00B0EEFB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +686,7 @@
 				8A4747602C3D31EE0021EDBC /* Color.Extension.swift in Sources */,
 				8A345D262C25FA9E000A317C /* TodoItem.Extension.swift in Sources */,
 				8AF140242C4ADC2500ACA94B /* ElementRequest.swift in Sources */,
+				8AED39F72C544EDD007F4C19 /* TodoItemDb.swift in Sources */,
 				8A345D222C25FA51000A317C /* Importance.swift in Sources */,
 				8AD1E27B2C45EBEF00CEB65E /* HTTPMethods.swift in Sources */,
 				8A1E2C5A2C20325900B0EEFB /* HomeView.swift in Sources */,
@@ -674,9 +712,11 @@
 				8A72AC262C45D05200759B9A /* Config.swift in Sources */,
 				8AF6E2EA2C2612BD0097997A /* TodoItemView.swift in Sources */,
 				8AF6E2ED2C2617200097997A /* IsCompletedButton.swift in Sources */,
+				8AED39F22C544DA0007F4C19 /* DataStorage.swift in Sources */,
 				8AD1E2772C45E75300CEB65E /* Container.swift in Sources */,
 				8A1E2C582C20325900B0EEFB /* ToDoAppApp.swift in Sources */,
 				8AE2B5F52C46E7DE006716E4 /* TodoNetworkService.swift in Sources */,
+				8AED39EF2C544D17007F4C19 /* FileCache.swift in Sources */,
 				8AD1E2662C45DA2C00CEB65E /* APITags.swift in Sources */,
 				8A23ED982C4866F600C37C33 /* ElementResponse.swift in Sources */,
 				8AE2B5F82C46E93B006716E4 /* TodoItemNetwork.swift in Sources */,
