@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TodoListView_iOS: View {
+    @AppStorage("DataStorage") var dataStorage: String = DataStorage.swiftData.rawValue
+    
     @State var isShowSheet: Bool = false
     
     @StateObject var viewModel: TodoListViewModel

@@ -22,8 +22,6 @@ class TodoListViewModel: ObservableObject {
     
     init() {
         do {
-//            let fileCache = FileCacheLibrary<TodoItem>()
-//            self.todos = try fileCache.exportFromFile()
             Task {
                 await todoActor.$activeRequests
                     .receive(on: RunLoop.current)
